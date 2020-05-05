@@ -176,10 +176,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseInitializer.cs" />
-    <Compile Include="Models\Objects\Customer.cs" />
-    <Compile Include="Models\Objects\Staff.cs" />
-    <Compile Include="Models\Objects\Supplier.cs" />
-    <Compile Include="Models\Objects\Vehicle.cs" />
+    <Compile Include="Models\Actors\Customer.cs" />
+    <Compile Include="Models\Actors\Staff.cs" />
+    <Compile Include="Models\Actors\Supplier.cs" />
+    <Compile Include="Models\Actors\Vehicle.cs" />
     <Compile Include="Models\SystemParts\Booking.cs" />
     <Compile Include="Models\SystemParts\Job.cs" />
     <Compile Include="Models\SystemParts\Order.cs" />
@@ -187,7 +187,7 @@
     <Compile Include="Models\SystemParts\PartUsed.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Objects\User.cs" />
+    <Compile Include="Models\Actors\User.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DonaldsonMotors.Models;
 using DonaldsonMotors.ViewModels;
-using DonaldsonMotors.Models.Objects;
+using DonaldsonMotors.Models.Actors;
 
 namespace DonaldsonMotors.Controllers
 {

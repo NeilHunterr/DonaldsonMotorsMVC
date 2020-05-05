@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using DonaldsonMotors.Models;
-using DonaldsonMotors.Models.Objects;
+using DonaldsonMotors.Models.Actors;
 
 namespace DonaldsonMotors
 {

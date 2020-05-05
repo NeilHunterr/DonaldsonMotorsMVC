@@ -1,4 +1,4 @@
-﻿using DonaldsonMotors.Models.Objects;
+﻿using DonaldsonMotors.Models.Actors;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
