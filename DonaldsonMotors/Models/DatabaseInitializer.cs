@@ -1,4 +1,5 @@
 ﻿using DonaldsonMotors.Models.Actors;
+using DonaldsonMotors.Models.SystemParts;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -42,6 +43,12 @@ namespace DonaldsonMotors.Models
                     roleManager.Create(new IdentityRole("Stock Manager"));
                 }
 
+                //if role does not exist/ Create
+                if (!roleManager.RoleExists("Customer"))
+                {
+                    roleManager.Create(new IdentityRole("Customer"));
+                }
+
                 //save DB
                 context.SaveChanges();
 
@@ -67,9 +74,10 @@ namespace DonaldsonMotors.Models
                     EmergencyContactNumber = "08001111",
                     NationalInsuranceNumber = "NI 21 33 A",
                     ContractType = ContractType.FullTime,
-                    ContractStartDate = DateTime.Now.AddDays(-1200),
-                    ContractEndDate = null
+                    ContractStartDate = DateTime.Now.AddDays(-1200)
                 };
+
+                GM.Jobs = new List<Job>();
 
                 //add the hashed password to the user
                 userManager.Create(GM, "lambo123");
@@ -300,6 +308,9 @@ namespace DonaldsonMotors.Models
                 //add the hashed password to the user
                 userManager.Create(cust1, "password123");
 
+                //add the user to their role
+                userManager.AddToRole(cust1.Id, "Customer");
+
                 var cust2 = new Customer()
                 {
                     //generic user props
@@ -320,7 +331,7 @@ namespace DonaldsonMotors.Models
                 userManager.Create(cust2, "password123");
 
                 //add the user to their role
-                userManager.AddToRole(cust2.Id, "Member");
+                userManager.AddToRole(cust2.Id, "Customer");
 
                 //save DB
                 context.SaveChanges();

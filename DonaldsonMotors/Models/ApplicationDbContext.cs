@@ -9,9 +9,6 @@ using DonaldsonMotors.Models.SystemParts;
 
 namespace DonaldsonMotors.Models
 {
-    /// <summary>
-    /// Dbcontext class
-    /// </summary>
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public DbSet<Vehicle> Vehicles { get; set; }
