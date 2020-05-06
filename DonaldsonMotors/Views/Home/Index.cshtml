@@ -75,12 +75,36 @@
             </div>
 
             <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li><a href="#features">Services</a></li>
-                    <li><a href="#portfolio">Book Now</a></li>
-                    <li><a href="#team">Check Avalability</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <ul class="nav-menu">
+                            <li><a href="#features">Services</a></li>
+                            <li><a href="#portfolio">Book Now</a></li>
+                            <li><a href="#team">Check Avalability</a></li>
+                            <li><a href="#contact">Contact Us</a></li>
+                            <li>
+                                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            </li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                        </ul>
+                    }
+                }
+                else
+                {
+                    <ul class="nav-menu">
+                        <li><a href="#features">Services</a></li>
+                        <li><a href="#portfolio">Book Now</a></li>
+                        <li><a href="#team">Check Avalability</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>
+                }
             </nav>
             <!-- #nav-menu-container -->
 
