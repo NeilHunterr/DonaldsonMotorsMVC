@@ -38,5 +38,6 @@ namespace DonaldsonMotors.Models.SystemParts
         public Supplier Supplier { get; set; }
 
         public List<Order> Orders { get; set; }
+        public List<PartUsed> PartsUsed { get; set; }
     }
 }
