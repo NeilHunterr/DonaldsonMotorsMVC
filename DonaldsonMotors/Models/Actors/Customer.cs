@@ -14,15 +14,11 @@ namespace DonaldsonMotors.Models.Actors
 {
     public class Customer : User
     {
-        [Required]
         [Display(Name = "Customer Type")]
         public CustomerType CustomerType { get; set; }
 
         //nav props
-
-        [Required]
         public List<Vehicle> Vehicles { get; set; }
-        [Required]
         public List<Booking> Bookings { get; set; }
     }
 

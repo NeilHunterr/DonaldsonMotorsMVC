@@ -64,6 +64,7 @@ namespace DonaldsonMotors.Models
                     Email = "generalmanager@donaldsonmotors.com",
                     FirstName = "General",
                     LastName = "Manager",
+                    DateOfBirth = new DateTime(1994, 06, 28),
                     Street = "12 New Street",
                     City = "Glasgow",
                     PostCode = "G14 6GS",
@@ -74,7 +75,8 @@ namespace DonaldsonMotors.Models
                     EmergencyContactNumber = "08001111",
                     NationalInsuranceNumber = "NI 21 33 A",
                     ContractType = ContractType.FullTime,
-                    ContractStartDate = DateTime.Now.AddDays(-1200)
+                    ContractStartDate = DateTime.Now.AddDays(-1200),
+                    ContractEndDate = null
                 };
 
                 GM.Jobs = new List<Job>();
@@ -97,6 +99,7 @@ namespace DonaldsonMotors.Models
                     Email = "stockmanager@donaldsonmotors.com",
                     FirstName = "Stock",
                     LastName = "Manager",
+                    DateOfBirth = new DateTime(1994, 06, 28),
                     Street = "12 New Street",
                     City = "Glasgow",
                     PostCode = "G14 6GS",
@@ -124,6 +127,7 @@ namespace DonaldsonMotors.Models
                     Email = "clerk@donaldsonmotors.com",
                     FirstName = "Peyton",
                     LastName = "Sawyer",
+                    DateOfBirth = new DateTime(1994, 06, 28),
                     Street = "332 Long Street",
                     City = "Glasgow",
                     PostCode = "G35 9YR",
@@ -139,10 +143,10 @@ namespace DonaldsonMotors.Models
                 };
 
                 //add the hashed password to the user
-                userManager.Create(GM, "mini123");
+                userManager.Create(Clerk, "mini123");
 
                 //add the user to their role
-                userManager.AddToRole(GM.Id, "Clerk");
+                userManager.AddToRole(Clerk.Id, "Clerk");
 
                 //save DB
                 context.SaveChanges();
@@ -156,6 +160,7 @@ namespace DonaldsonMotors.Models
                     Email = "mech1@donaldsonmotors.com",
                     FirstName = "Fred",
                     LastName = "West",
+                    DateOfBirth = new DateTime(1994, 06, 28),
                     Street = "99 Love Street",
                     City = "Paisley",
                     PostCode = "PA3 2FF",
@@ -183,6 +188,7 @@ namespace DonaldsonMotors.Models
                     Email = "mech2@donaldsonmotors.com",
                     FirstName = "Bert",
                     LastName = "Zebra",
+                    DateOfBirth = new DateTime(1994, 06, 28),
                     Street = "33 Green Street",
                     City = "Greenock",
                     PostCode = "ML3 4RE",
@@ -211,6 +217,7 @@ namespace DonaldsonMotors.Models
                     Email = "mech3@donaldsonmotors.com",
                     FirstName = "Scott",
                     LastName = "Montgomery",
+                    DateOfBirth = new DateTime(1994, 06, 28),
                     Street = "35 Craigpark Drive",
                     City = "Glasgow",
                     PostCode = "G42 2QX",
@@ -238,6 +245,7 @@ namespace DonaldsonMotors.Models
                     Email = "mech4@donaldsonmotors.com",
                     FirstName = "Craig",
                     LastName = "Purdie",
+                    DateOfBirth = new DateTime(1994, 06, 28),
                     Street = "27 Mossvale Drive",
                     City = "Glasgow",
                     PostCode = "G45 2FG",
@@ -265,6 +273,7 @@ namespace DonaldsonMotors.Models
                     Email = "mech5@donaldsonmotors.com",
                     FirstName = "George",
                     LastName = "Best",
+                    DateOfBirth = new DateTime(1994, 06, 28),
                     Street = "450 White Street",
                     City = "Glasgow",
                     PostCode = "G44 1XZ",
@@ -296,9 +305,10 @@ namespace DonaldsonMotors.Models
                     Email = "FredEast@gmail.com",
                     FirstName = "Fred",
                     LastName = "East",
-                    Street = "",
-                    City = "",
-                    PostCode = "",
+                    DateOfBirth = new DateTime(1994, 06, 28),
+                    Street = "1 Anchor Wynd",
+                    City = "Paisley",
+                    PostCode = "PA1 1HL",
 
                     //customer props
                     CustomerType = CustomerType.General
@@ -318,6 +328,7 @@ namespace DonaldsonMotors.Models
                     Email = "MaryAnderson@gmail.com",
                     FirstName = "Mary",
                     LastName = "Anderson",
+                    DateOfBirth = new DateTime(1994, 06, 28),
                     Street = "5 Vine Street",
                     City = "Glasgow",
                     PostCode = "G87 8DD",
