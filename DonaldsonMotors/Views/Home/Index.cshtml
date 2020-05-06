@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = "";
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -42,25 +45,21 @@
 </head>
 
 <body>
-
     <!-- ======= Hero Section ======= -->
     <section class="hero">
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-12">
-                    <a class="hero-brand" href="index.html" title="Home"><img alt="Bell Logo" src="/img/logo.png"></a>
+                    <a class="hero-brand" href="index.html" title="Home"><img alt="Bell Logo" src="/img/logo.png" style="width:500px;height:100px"></a>
                 </div>
             </div>
 
             <div class="col-md-12">
-                <h1>
-                    A theme with personality
-                </h1>
 
                 <p class="tagline">
-                    This is a powerful theme with some great features that you can use in your future projects.
+                    Mechanics you can trust.
                 </p>
-                <a class="btn btn-full" href="#about">Get Started Now</a>
+                <a class="btn btn-full" href="#about">Book Now</a>
             </div>
         </div>
 
@@ -70,63 +69,35 @@
         <div class="container">
 
             <div id="logo" class="pull-left">
-                <a href="index.html"><img src="/img/logo-nav.png" alt=""></a>
+                <a href="index.html"><img src="/img/logo-nav.png" alt="" style="width:150px;height:40px"></a>
                 <!-- Uncomment below if you prefer to use a text image -->
                 <!--<h1><a href="#hero">Bell</a></h1>-->
             </div>
 
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li class="menu-has-children">
-                        <a href="">Drop Down</a>
-                        <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li class="menu-has-children">
-                                <a href="#">Drop Down 2</a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                            <li><a href="#">Drop Down 5</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="#features">Services</a></li>
+                    <li><a href="#portfolio">Book Now</a></li>
+                    <li><a href="#team">Check Avalability</a></li>
                     <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </nav>
             <!-- #nav-menu-container -->
 
             <nav class="nav social-nav pull-right d-none d-lg-inline">
-                <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
             </nav>
         </div>
     </header><!-- End Header -->
 
     <main id="main">
-        <!-- ======= Welcome Section ======= -->
-        <section class="welcome text-center">
-            <h2>Welcome to a perfect theme</h2>
-            <p>
-                This is the most powerful theme with thousands of options that you have never seen before.
-            </p>
-            <img alt="Bell - A perfect theme" class="gadgets-img hidden-md-down" src="/img/gadgets.png">
-        </section><!-- End Welcome Section -->
 
         <!-- ======= Features Section ======= -->
         <section class="features" id="features">
 
             <div class="container">
                 <h2 class="text-center">
-                    Features
+                    Services
                 </h2>
 
                 <div class="row">
@@ -134,13 +105,13 @@
                         <div class="card card-block text-center">
                             <div>
                                 <div class="feature-icon">
-                                    <span class="fa fa-rocket"></span>
+                                    <span class="fa fa-cog"></span>
                                 </div>
                             </div>
 
                             <div>
                                 <h3>
-                                    Custom Design
+                                   MOT
                                 </h3>
 
                                 <p>
@@ -154,13 +125,13 @@
                         <div class="card card-block text-center">
                             <div>
                                 <div class="feature-icon">
-                                    <span class="fa fa-envelope"></span>
+                                    <span class="fa fa-cog"></span>
                                 </div>
                             </div>
 
                             <div>
                                 <h3>
-                                    Responsive Layout
+                                    Oil Changes
                                 </h3>
 
                                 <p>
@@ -174,13 +145,13 @@
                         <div class="card card-block text-center">
                             <div>
                                 <div class="feature-icon">
-                                    <span class="fa fa-bell"></span>
+                                    <span class="fa fa-cog"></span>
                                 </div>
                             </div>
 
                             <div>
                                 <h3>
-                                    Innovative Ideas
+                                    Tyre Changes
                                 </h3>
 
                                 <p>
@@ -196,13 +167,13 @@
                         <div class="card card-block text-center">
                             <div>
                                 <div class="feature-icon">
-                                    <span class="fa fa-database"></span>
+                                    <span class="fa fa-cog"></span>
                                 </div>
                             </div>
 
                             <div>
                                 <h3>
-                                    Good Documentation
+                                    Repairs
                                 </h3>
 
                                 <p>
@@ -212,7 +183,7 @@
                         </div>
                     </div>
 
-                    <div class="feature-col col-lg-4 col-xs-12">
+                    @*<div class="feature-col col-lg-4 col-xs-12">
                         <div class="card card-block text-center">
                             <div>
                                 <div class="feature-icon">
@@ -249,12 +220,11 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
 
         </section><!-- End Features Section -->
-
         <!-- ======= Contact Section ======= -->
         <section id="contact">
             <div class="container">
@@ -376,7 +346,7 @@
     <a class="scrolltop" href="#"><span class="fa fa-angle-up"></span></a>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")   
+    @Scripts.Render("~/bundles/bootstrap")
 
 </body>
 

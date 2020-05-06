@@ -215,10 +215,6 @@
     <Content Include="img\porf-6.jpg" />
     <Content Include="img\porf-7.jpg" />
     <Content Include="img\porf-8.jpg" />
-    <Content Include="img\team-1.jpg" />
-    <Content Include="img\team-2.jpg" />
-    <Content Include="img\team-3.jpg" />
-    <Content Include="img\team-4.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
