@@ -44,7 +44,17 @@ namespace DonaldsonMotors.Controllers
                 DataEndField = DataStartField + 2;
                 DataTextField = "Text";
 
-                Events = from b in context.Bookings where (b.BookingDate <= VisibleStart) select b;
+                Events = from b in context.Bookings where b.BookingDate == VisibleStart select b;
+            }
+
+            protected override void OnCommand(CommandArgs e)
+            {
+                switch (e.Command)
+                {
+                    case "refresh":
+                        Update();
+                        break;
+                }
             }
         }
     }

@@ -1,30 +1,69 @@
 ﻿@using DayPilot.Web.Mvc;
+@using DayPilot.Web.Mvc.Data;
+@using DayPilot.Web.Mvc.Json;
+@using DayPilot.Web.Mvc.Recurrence;
+@using DayPilot.Web.Mvc.Themes;
+@using DayPilot.Web.Mvc.Utils;
+@using DayPilot.Web.Mvc.Export;
+@using DayPilot.Web.Mvc.Events;
 @using DayPilot.Web.Mvc.Enums.Calendar;
 
 @{
     ViewBag.Title = "CheckAvalability";
 }
 
-<head>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
+    <head>
 
-<body>
-    <h2>CheckAvalability</h2>
+        @section style
+        {
+            @Styles.Render("~/Content/css")
+            @Scripts.Render("~/bundles/modernizr")
+        }
 
-    @Html.DayPilotCalendar("dp", new DayPilotCalendarConfig
+    </head>
+
+    <body>
+        <h2>CheckAvalability</h2>
+
+        <div id=""></div>
+
+            @Html.DayPilotCalendar("dp", new DayPilotCalendarConfig
+            {
+                BackendUrl = Url.Action("Backend", "Calendar"),
+                ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Week
+            })
+
+            @Html.DayPilotCalendar("dp", new DayPilotCalendarConfig
+            {
+                BackendUrl = Url.Action("Backend", "Calendar"),
+                ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Week,
+                TimeRangeSelectedHandling = DayPilot.Web.Mvc.Events.Calendar.TimeRangeSelectedHandlingType.JavaScript,
+                TimeRangeSelectedJavaScript = "create(start, end)"
+            })
+ 
+        @section Scripts
     {
-        BackendUrl = Url.Action("Backend", "Calendar"),
-        ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Week
-    })
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @Scripts.Render("~/bundles/jqueryval")
 
+            <script type="text/javascript">
 
+            function create(start, end) {
+                var m = new DayPilot.Modal();
+                m.closed = function () {
+                    if (this.result == "OK") {
+                        dp.commandCallBack('refresh');
+                    }
+                    dp.clearSelection();
+                };
+                m.showUrl('@Url.Action("Create", "Event")?start=' + start + '&end=' + end);
+            }
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/jqueryval")
-</body>
+            </script>
+        }
+
+    </body>
 
 <footer>
 </footer>
