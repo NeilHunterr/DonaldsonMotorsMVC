@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Calendar">
+  <DataContextMoniker Name="/CalendarDataContext" />
+  <nestedChildShapes>
+    <classShape Id="c95d9fa9-f782-46d5-b86b-3149966150d3" absoluteBounds="1.375, 0.625, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/CalendarDataContext/Booking" />
+      <nestedChildShapes>
+        <elementListCompartment Id="88278362-ec94-4143-81e7-494488091340" absoluteBounds="1.3899999999999997, 1.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

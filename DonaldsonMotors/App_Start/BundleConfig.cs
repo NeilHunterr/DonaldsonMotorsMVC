@@ -10,6 +10,7 @@ namespace DonaldsonMotors
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-{version}.min.js",
                         "~/Scripts/main.js",
                         "~/vendor/jquery/jquery.min.js",
                         "~/vendor/bootstrap/js/bootstrap.bundle.min.js",
@@ -22,7 +23,8 @@ namespace DonaldsonMotors
                         "~/vendor/lockfixed/jquery.lockfixed.min.js",
                         "~/vendor/waypoints/jquery.waypoints.min.js",
                         "~/vendor/superfish/superfish.min.js",
-                        "~/vendor/hoverIntent/hoverIntent.js"));
+                        "~/vendor/hoverIntent/hoverIntent.js",
+                        "~/Scripts/DayPilot/daypilot-all.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

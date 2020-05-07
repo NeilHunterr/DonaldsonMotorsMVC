@@ -1,0 +1,33 @@
+﻿@using DayPilot.Web.Mvc;
+@using DayPilot.Web.Mvc.Enums.Calendar;
+
+@{
+    ViewBag.Title = "CheckAvalability";
+}
+
+<head>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <h2>CheckAvalability</h2>
+
+    @Html.DayPilotCalendar("dp", new DayPilotCalendarConfig
+    {
+        BackendUrl = Url.Action("Backend", "Calendar"),
+        ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Week
+    })
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+
+<footer>
+</footer>
+
+
+
