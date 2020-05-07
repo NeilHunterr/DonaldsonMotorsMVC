@@ -1,0 +1,30 @@
+﻿
+@using DayPilot.Web.Mvc;
+
+@{
+    ViewBag.Title = "CheckAvalability";
+}
+<head>
+
+</head>
+
+<body>
+
+    <h2>CheckAvalability</h2>
+
+    <script src="@Url.Content("~/Scripts/daypilot-all.min.js")" type="text/javascript"></script>
+
+
+    @Html.DayPilotMonth("dp", new DayPilotMonthConfig
+    {
+        BackendUrl = Url.Content("~/Calendar/Backend"),
+        EventClickHandling = DayPilot.Web.Mvc.Events.Month.EventClickHandlingType.CallBack
+    })
+
+
+</body>
+
+<footer>
+</footer>
+
+

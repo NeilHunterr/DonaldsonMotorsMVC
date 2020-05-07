@@ -10,6 +10,7 @@ namespace DonaldsonMotors
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/daypilot-all.min.js",
                         "~/Scripts/main.js",
                         "~/vendor/jquery/jquery.min.js",
                         "~/vendor/bootstrap/js/bootstrap.bundle.min.js",

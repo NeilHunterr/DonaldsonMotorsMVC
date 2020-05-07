@@ -346,8 +346,24 @@ namespace DonaldsonMotors.Models
 
                 //save DB
                 context.SaveChanges();
-            }
 
+                //Practice booking seed
+                var booking = new Booking()
+                {
+                    BookingDate = DateTime.Now,
+                    CheckIn = true,
+                    Cancelled = false,
+                    CancelationReason = "",
+                    EstimatedCost = 24,
+                    Deposit = 12,
+                    Complete = false,
+                    TotalCost = 25
+                };
+
+                context.Bookings.Add(booking);
+
+                context.SaveChanges();
+            }
 
         }
     }

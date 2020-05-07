@@ -102,3 +102,5 @@ E:\DonaldsonMotors\DonaldsonMotors\obj\Debug\DonaldsonMotors.csproj.CopyComplete
 E:\DonaldsonMotors\DonaldsonMotors\obj\Debug\DonaldsonMotors.dll
 E:\DonaldsonMotors\DonaldsonMotors\obj\Debug\DonaldsonMotors.pdb
 E:\DonaldsonMotors\DonaldsonMotors\obj\Debug\DonaldsonMotors.csprojAssemblyReference.cache
+E:\DonaldsonMotors\DonaldsonMotors\bin\DayPilot.Web.Mvc.dll
+E:\DonaldsonMotors\DonaldsonMotors\bin\DayPilot.Web.Mvc.xml

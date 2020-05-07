@@ -45,9 +45,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DayPilot.Web.Mvc">
+      <HintPath>C:\Users\neilh\Downloads\DayPilotLiteMvc-1.5.434\Binary\Mvc5\DayPilot.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -169,6 +173,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -185,6 +190,11 @@
     <Compile Include="Models\SystemParts\Order.cs" />
     <Compile Include="Models\SystemParts\Part.cs" />
     <Compile Include="Models\SystemParts\PartUsed.cs" />
+    <Compile Include="SQL\Calendar.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Calendar.dbml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Actors\User.cs" />
@@ -209,6 +219,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\daypilot-all.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -306,10 +317,16 @@
     <Content Include="vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="vendor\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="vendor\jquery\jquery.min.map" />
+    <Content Include="Views\Booking\CheckAvalability.cshtml" />
+    <Content Include="SQL\Calendar.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Calendar.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Booking\" />
+    <Folder Include="Views\Calendar\" />
     <Folder Include="Views\Job\" />
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +341,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SQL\Calendar.dbml.layout">
+      <DependentUpon>Calendar.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
