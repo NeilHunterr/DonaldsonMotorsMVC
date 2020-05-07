@@ -3,5 +3,43 @@
     ViewBag.Title = "CheckAvalability";
 }
 
-<h2>CheckAvalability</h2>
+    <head>
 
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+    <body>
+
+        <h2>CheckAvalability</h2>
+
+
+
+        <div id="calendar"></div>
+
+        @section Scripts{
+
+            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+            <script src="~/Scripts/bootstrap.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/moment.min.js"></script>
+            <script src="~/Scripts/fullcalendar.min.js"></script>
+
+            <script type="text/javascript">
+
+			$(document).ready(function () {
+				$('#calendar').fullCalendar({
+        			header: {
+            			left: 'prev,next today',
+            			center: 'title',
+            			right: 'month,agendaWeek,agendaDay'
+					},
+            		firstDay: 1, //The day that each week begins (Monday=1)
+            		slotMinutes: 60,
+            		events: '@Url.RouteUrl(new{ action="GetEvents", controller="Calendar"})'
+        		});
+    		});
+            </script>
+        }
+
+    </body>

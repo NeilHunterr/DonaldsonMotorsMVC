@@ -6,9 +6,11 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("CSS", required: false)
 
 </head>
 <body>
+
     <header id="header">
         <div class="container">
 
