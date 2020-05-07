@@ -13,5 +13,10 @@ namespace DonaldsonMotors.Controllers
         {
             return View();
         }
+
+        public ActionResult CheckAvalability()
+        {
+            return View();
+        }
     }
 }

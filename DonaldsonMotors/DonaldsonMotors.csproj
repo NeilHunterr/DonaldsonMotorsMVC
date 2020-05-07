@@ -306,10 +306,10 @@
     <Content Include="vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="vendor\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="vendor\jquery\jquery.min.map" />
+    <Content Include="Views\Booking\CheckAvalability.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Booking\" />
     <Folder Include="Views\Job\" />
   </ItemGroup>
   <ItemGroup>
