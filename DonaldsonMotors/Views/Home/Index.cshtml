@@ -85,7 +85,7 @@
                         <ul class="nav-menu">
                             <li><a href="#features">Services</a></li>
                             <li><a href="#portfolio">Book Now</a></li>
-                            <li>@Html.ActionLink("Check Avalability", "CheckAvalability", "Booking", null)</li>
+                            <li>@Html.ActionLink("Check Avalability", "CheckAvalability", "Booking")</li>
                             <li><a href="#contact">Contact Us</a></li>
                             <li>
                                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
@@ -99,7 +99,7 @@
                     <ul class="nav-menu">
                         <li><a href="#features">Services</a></li>
                         <li><a href="#portfolio">Book Now</a></li>
-                        <li>@Html.ActionLink("Check Avalability", "CheckAvalability", "Booking", null)</li>
+                        <li>@Html.ActionLink("Check Avalability", "CheckAvalability", "Booking")</li>
                         <li><a href="#contact">Contact Us</a></li>
                         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
