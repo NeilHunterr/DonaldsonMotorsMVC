@@ -21,20 +21,43 @@ namespace DonaldsonMotors.Controllers
             return View();
         }
 
-        public ActionResult GetEvents(double start, double end)
+        public ActionResult GetCalendarData()
         {
-            var fromDate = ConvertFromUnixTimestamp(start);
-            var toDate = ConvertFromUnixTimestamp(end);
+            // Initialization.  
+            JsonResult result = new JsonResult();
 
-            //Get the events
-            //You may get from the repository also
-            var eventList = GetEvents();
+            try
+            {
+                // Loading.  
+                List<Event> data = this.GetEventsList();
 
-            var rows = eventList.ToArray();
-            return Json(rows, JsonRequestBehavior.AllowGet);
+                // Processing.  
+                result = this.Json(data, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                // Info  
+                Console.Write(ex);
+            }
+
+            // Return info.  
+            return result;
         }
 
-        private List<Event> GetEvents()
+        ////public ActionResult GetEvents(double start, double end)
+        ////{
+        ////    var fromDate = ConvertFromUnixTimestamp(start);
+        ////    var toDate = ConvertFromUnixTimestamp(end);
+
+        ////    //Get the events
+        ////    //You may get from the repository also
+        ////    var eventList = GetEventsList();
+
+        ////    var rows = eventList.ToArray();
+        ////    return Json(rows, JsonRequestBehavior.AllowGet);
+        ////}
+
+        private List<Event> GetEventsList()
         {
             ApplicationDbContext context = new ApplicationDbContext();
 
