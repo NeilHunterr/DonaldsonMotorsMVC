@@ -11,6 +11,8 @@ namespace DonaldsonMotors
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/main.js",
+                        "~/Scripts/data.js",
+                        "~/Scripts/jquery.calendario.js",
                         "~/vendor/jquery/jquery.min.js",
                         "~/vendor/bootstrap/js/bootstrap.bundle.min.js",
                         "~/vendor/jquery.easing/jquery.easing.min.js",
@@ -30,7 +32,9 @@ namespace DonaldsonMotors
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                        "~/Scripts/modernizr-*",
+                        "~/Scripts/modernizr.custom.63321.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
@@ -38,6 +42,7 @@ namespace DonaldsonMotors
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/calendar.css",
                       "~/vendor/bootstrap/css/bootstrap.min.css",
                       "~/vendor/venobox/venobox.css",
                       "~/vendor/font-awesome/css/font-awesome.min.css",
