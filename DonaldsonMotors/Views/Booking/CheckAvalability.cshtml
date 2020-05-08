@@ -54,8 +54,10 @@
                         alert('a day has been clicked!');
 
                     },
+
+                    @*events: '@Url.RouteUrl(new{ action="GetEvents", controller="Home"})',*@
             		
-            		events: function (start, end, timezone, callback)  
+            		events: function ()  
                     {  
                         $.ajax({  
                             url: '/Calendar/GetCalendarData',  
