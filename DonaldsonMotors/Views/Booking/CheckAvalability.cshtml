@@ -19,6 +19,7 @@
 
         @section Scripts{
 
+            <script src="~/Scripts/jquery-ui.js"></script>
             <script src="~/Scripts/jquery-3.3.1.min.js"></script>
             <script src="~/Scripts/bootstrap.min.js"></script>
             <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -28,14 +29,27 @@
             <script type="text/javascript">
 
 			$(document).ready(function () {
-				$('#calendar').fullCalendar({
+                $('#calendar').fullCalendar({
+
+
         			header: {
             			left: 'prev,next today',
             			center: 'title',
             			right: 'month,agendaWeek,agendaDay'
-					},
-            		firstDay: 1, //The day that each week begins (Monday=1)
-            		slotMinutes: 60,
+                    },
+
+                    selectable: true,
+                    selecthelper: true,
+                    editable: true,
+                    eventLimit: true,
+                    weekends: false,
+
+                    dayClick: function () {
+
+                        alert('a day has been clicked!');
+
+                    },
+            		
             		events: '@Url.RouteUrl(new{ action="GetEvents", controller="Calendar"})'
         		});
     		});

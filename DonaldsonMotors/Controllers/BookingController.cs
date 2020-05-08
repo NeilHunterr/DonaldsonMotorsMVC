@@ -48,18 +48,209 @@ namespace DonaldsonMotors.Controllers
             
             do
             {
-                int hour = 0;
+                int counter = 0;
 
-                do
+                foreach(Booking b in allBookings)
                 {
+                    if(b.BookingDate == loopDate)
+                    {
+                        Event e = new Event()
+                        {
+                            date = b.BookingDate,
+                            start = b.BookingDate.Hour,
+                            end = b.BookingDate.Hour + 1,
+                            title = "Unavailable"
+                        };
 
-                    hour = hour + 1;
+                        eventList.Add(e);
 
-                } while (hour <= 9);
+                        counter = counter + 1;
+                    }
+                }
 
+                if(counter < 4)
+                {
+                    foreach(Event e in eventList)
+                    {
+                        if(e.date == loopDate)
+                        {
+                            if(e.date.Hour == 9)
+                            {
+                                Event ev = new Event()
+                                {
+                                    date = e.date,
+                                    start = 11,
+                                    end =  12,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev);
+
+                                Event ev1 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 13,
+                                    end = 14,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev1);
+
+                                Event ev2 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 15,
+                                    end = 16,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev2);
+                            }
+                            else if(e.date.Hour == 11)
+                            {
+                                Event ev3 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 9,
+                                    end = 10,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev3);
+
+                                Event ev4 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 13,
+                                    end = 14,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev4);
+
+                                Event ev5 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 15,
+                                    end = 16,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev5);
+                            }
+                            else if(e.date.Hour == 13)
+                            {
+                                Event ev6 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 9,
+                                    end = 10,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev6);
+
+                                Event ev7 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 11,
+                                    end = 12,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev7);
+
+                                Event ev8 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 15,
+                                    end = 16,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev8);
+                            }
+                            else if(e.date.Hour == 15)
+                            {
+                                Event ev9 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 9,
+                                    end = 10,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev9);
+
+                                Event ev10 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 11,
+                                    end = 12,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev10);
+
+                                Event ev11 = new Event()
+                                {
+                                    date = e.date,
+                                    start = 13,
+                                    end = 15,
+                                    title = "Book Now"
+                                };
+
+                                eventList.Add(ev11);
+                            }
+                        }
+                    }
+                }
+                else if(counter == 0)
+                {
+                    Event ev12 = new Event()
+                    {
+                        date = loopDate,
+                        start = 9,
+                        end = 10,
+                        title = "Book Now"
+                    };
+
+                    eventList.Add(ev12);
+
+                    Event ev13 = new Event()
+                    {
+                        date = loopDate,
+                        start = 11,
+                        end = 12,
+                        title = "Book Now"
+                    };
+
+                    eventList.Add(ev13);
+
+                    Event ev14 = new Event()
+                    {
+                        date = loopDate,
+                        start = 13,
+                        end = 15,
+                        title = "Book Now"
+                    };
+
+                    eventList.Add(ev14);
+
+                    Event ev15 = new Event()
+                    {
+                        date = loopDate,
+                        start = 14,
+                        end = 15,
+                        title = "Book Now"
+                    };
+
+                    eventList.Add(ev15);
+                }
+                    
                 loopDate = loopDate.AddDays(1);
 
-            } while (loopDate == currentDate.AddDays(21));
+            } while (loopDate <= currentDate.AddDays(21));
 
             return eventList;
         }

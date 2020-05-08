@@ -46,7 +46,7 @@ namespace DonaldsonMotors
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/jquery-ui.css",
-                      "~/Content/jquery-ui.structures.css",
+                      "~/Content/jquery-ui.structure.css",
                       "~/Content/jquery-ui.theme.css",
                       "~/Content/fullcalendar.css",
                       "~/Content/fullcalendar.min.css",
