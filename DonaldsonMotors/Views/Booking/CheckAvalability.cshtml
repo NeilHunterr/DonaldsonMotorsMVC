@@ -2,6 +2,130 @@
 @{
     ViewBag.Title = "CheckAvalability";
 }
+    <head>
 
-<h2>CheckAvalability</h2>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+
+    <body>
+
+        <h2>CheckAvalability</h2>
+
+        <script src="~/Scripts/hello.week.min.js"></script>
+
+        <script>
+            new HelloWeek();
+        </script>
+
+        <div class="hello-week">
+            <div class="hello-week__header">
+                <button class="btn demo-prev">◀</button>
+                <div class="hello-week__label"></div>
+                <button class="btn demo-next">▶</button>
+            </div>
+            <div class="hello-week__week"></div>
+            <div class="hello-week__month"></div>
+        </div>
+
+        <p><strong>Today:</strong> </p>
+        <ul class="demo-today"><span>n/a</span></ul>
+        <p><strong>Last Picked Day:</strong></p>
+        <ul class="demo-last"><span>n/a</span></ul>
+        <p><strong>Picked Days:</strong></p>
+        <ul class="demo-picked"><span>n/a</span></ul>
+
+
+        @*<script>
+            const myCalendar = new HelloWeek();
+
+            const prev = document.querySelector('.demo-prev');
+            const next = document.querySelector('.demo-next');
+
+            const today = document.querySelector('.demo-today');
+            const picked = document.querySelector('.demo-picked');
+            const last = document.querySelector('.demo-last');
+
+            function updateInfo() {
+                if (this.today)
+                {
+                today.innerHTML = '';
+                var li = document.createElement('li');
+                li.innerHTML = this.today;
+                today.appendChild(li);
+                }
+
+                if (this.lastSelectedDay)
+                {
+
+                    picked.innerHTML = '';
+
+                        for (days of this.selectedDays)
+                        {
+                          var li = document.createElement('li');
+                          li.innerHTML = days;
+                          picked.appendChild(li);
+                        }
+
+                    last.innerHTML = '';
+
+                    var li = document.createElement('li');
+
+                    li.innerHTML = this.lastSelectedDay;
+                    last.appendChild(li);
+                }
+            }
+
+            const myCalendar = new HelloWeek({
+
+              onLoad: updateInfo,
+              onChange: updateInfo,
+              onSelect: updateInfo
+
+            });
+
+            const myCalendar = new HelloWeek({
+            selector: '.hello-week',
+            format: 'dd/mm/yyyy',
+            weekShort: true,
+            monthShort: false,
+            multiplePick: false,
+            defaultDate: false,
+            todayHighlight: true,
+            daysSelected: null, // ['2019-02-26', '2019-03-01', '2019-03-02', '2019-03-03']
+            disablePastDays: false,
+            disabledDaysOfWeek: false,
+            disableDates: false,
+            weekStart: 0, // 0 (Sunday) to 6 (Saturday).
+            daysHighlight: false,
+            range: false,
+            rtl: false,
+            locked: false,
+            minDate: false,
+            maxDate: false,
+            nav: ['◀', '▶'],
+
+            onLoad: () => { /** callback function */ },
+
+            onChange: () => { /** callback function */ },
+
+            onSelect: () => { /** callback function */ },
+
+            onClear: () => { /** callback function */ }
+
+            });
+
+        </script>*@
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+
+    </body>
+
+<footer>
+
+</footer>
+
 

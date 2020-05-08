@@ -38,6 +38,8 @@ namespace DonaldsonMotors
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/default.theme.css",
+                      "~/Content/hello.week.css",
                       "~/vendor/bootstrap/css/bootstrap.min.css",
                       "~/vendor/venobox/venobox.css",
                       "~/vendor/font-awesome/css/font-awesome.min.css",
