@@ -357,8 +357,13 @@ namespace DonaldsonMotors.Models
                     EstimatedCost = 24,
                     Deposit = 12,
                     Complete = false,
-                    TotalCost = 25
+                    TotalCost = 25                   
                 };
+
+                booking.CustId = cust1.Id;
+                booking.Customer = cust1;
+
+                booking.Jobs = new List<Job>();
 
                 context.Bookings.Add(booking);
 
