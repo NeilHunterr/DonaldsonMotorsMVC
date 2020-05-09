@@ -21,41 +21,41 @@ namespace DonaldsonMotors.Controllers
             return View();
         }
 
-        public ActionResult GetCalendarData()
+        //public ActionResult GetCalendarData()
+        //{
+        //    // Initialization.  
+        //    JsonResult result = new JsonResult();
+
+        //    try
+        //    {
+        //        // Loading.  
+        //        List<Event> data = this.GetEventsList();
+
+        //        // Processing.  
+        //        result = this.Json(data, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Info  
+        //        Console.Write(ex);
+        //    }
+
+        //    // Return info.  
+        //    return result;
+        //}
+
+        public ActionResult GetEvents(double start, double end)
         {
-            // Initialization.  
-            JsonResult result = new JsonResult();
+            var fromDate = ConvertFromUnixTimestamp(start);
+            var toDate = ConvertFromUnixTimestamp(end);
 
-            try
-            {
-                // Loading.  
-                List<Event> data = this.GetEventsList();
+            //Get the events
+            //You may get from the repository also
+            var eventList = GetEventsList();
 
-                // Processing.  
-                result = this.Json(data, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                // Info  
-                Console.Write(ex);
-            }
-
-            // Return info.  
-            return result;
+            var rows = eventList.ToArray();
+            return Json(rows, JsonRequestBehavior.AllowGet);
         }
-
-        ////public ActionResult GetEvents(double start, double end)
-        ////{
-        ////    var fromDate = ConvertFromUnixTimestamp(start);
-        ////    var toDate = ConvertFromUnixTimestamp(end);
-
-        ////    //Get the events
-        ////    //You may get from the repository also
-        ////    var eventList = GetEventsList();
-
-        ////    var rows = eventList.ToArray();
-        ////    return Json(rows, JsonRequestBehavior.AllowGet);
-        ////}
 
         private List<Event> GetEventsList()
         {

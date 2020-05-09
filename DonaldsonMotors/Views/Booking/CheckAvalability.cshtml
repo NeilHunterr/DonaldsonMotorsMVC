@@ -1,100 +1,39 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "CheckAvalability";
 }
 
-    <head>
-
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-
-    </head>
-    <body>
-
-        <h2>CheckAvalability</h2>
-
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/fullcalendarcss")
+<script>
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'bootstrap' ],
+      themeSystem: 'bootstrap'
+    });
+ </script>
 
 
-        <div id="calendar"></div>
+<div id="calendar">
+    <!-- FullCalendar is loaded here. -->
+</div>
 
-        @section Scripts{
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/fullcalendarjs")
 
-            <script src="~/Scripts/jquery-ui.js"></script>
-            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-            <script src="~/Scripts/bootstrap.min.js"></script>
-            <script src="~/Scripts/jquery.validate.min.js"></script>
-            <script src="~/Scripts/moment.min.js"></script>
-            <script src="~/Scripts/fullcalendar.min.js"></script>
-
-            <script type="text/javascript">
-
-			$(document).ready(function () {
+<script type="text/javascript">
+            $(document).ready(function () {
                 $('#calendar').fullCalendar({
-
-        			header: {
-            			left: 'prev,next today',
-            			center: 'title',
-            			right: 'month,agendaWeek,agendaDay'
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
                     },
+                    firstDay: 1, //The day that each week begins (Monday=1)
+                    slotMinutes: 60,
+                    events: '@Url.RouteUrl(new{ action="GetEvents", controller="Calendar"})'
+                });
+            });
 
-                    buttonText: {  
-                    today: 'today',  
-                    month: 'month',  
-                    week: 'week',  
-                    day: 'day'  
-                    }, 
-
-                    selectable: true,
-                    selecthelper: true,
-                    eventLimit: true,
-                    weekends: false,
-
-                    dayClick: function () {
-
-                        alert('a day has been clicked!');
-
-                    },
-
-                    @*events: '@Url.RouteUrl(new{ action="GetEvents", controller="Home"})',*@
-            		
-            		events: function ()  
-                    {  
-                        $.ajax({  
-                            url: '/Calendar/GetCalendarData',  
-                            type: "GET",  
-                            dataType: "JSON",  
-  
-                            success: function (result)  
-                            {  
-                                var events = [];  
-  
-                                $.each(result, function (i, data)  
-                                {  
-                                    events.push(  
-                                    {  
-                                        title: data.Title,    
-                                        start: moment(data.Start_Date).format('DD-MM'),  
-                                        end: moment(data.End_Date).format('DD-MM'),  
-                                        backgroundColor: "#9501fc",  
-                                        borderColor: "#fc0101"  
-                                    });  
-                                });  
-  
-                                callback(events);  
-                            }  
-                        });  
-                    },  
-  
-                    eventRender: function (event, element)  
-                    {  
-                        element.qtip(  
-                        {  
-                            content: event.description  
-                        });  
-                    },  
-        		});
-    		});
-            </script>
-        }
-
-    </body>
+</script>
