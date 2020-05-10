@@ -4,22 +4,21 @@
 
 @Styles.Render("~/Content/css")
 @Styles.Render("~/Content/fullcalendarcss")
-<script>
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'bootstrap' ],
-      themeSystem: 'bootstrap'
-    });
- </script>
 
 
-<div id="calendar">
-    <!-- FullCalendar is loaded here. -->
-</div>
+    <div class="container">
+
+        <div id="calendar">
+            <!-- FullCalendar is loaded here. -->
+        </div>
+
+    </div>
+
 
 @Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/modernizr")
-@Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/bundles/fullcalendarjs")
 
 <script type="text/javascript">

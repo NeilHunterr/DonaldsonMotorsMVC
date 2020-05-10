@@ -48,16 +48,10 @@ namespace DonaldsonMotors
                 ));
 
             bundles.Add(new StyleBundle("~/Content/fullcalendarcss").Include(
-                      "~/Content/fullcalendar.min.css",
-                      "~/Content/fullcalendar.print.min.css",
-                      "~/Content/jquery-ui.css",
-                      "~/Content/jquery-ui.structure.css",
-                      "~/Content/jquery-ui.theme.css"
-                ));
+                      "~/Content/fullcalendar.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/fullcalendarjs").Include(
-                        "~/Scripts/jquery-ui.js",
-                        "~/Scripts/moment-with-locales.min.js",
+                        "~/Scripts/moment.min.js",
                        "~/Scripts/fullcalendar.min.js"
                 ));
         }
