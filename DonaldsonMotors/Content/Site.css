@@ -22,3 +22,21 @@ textarea {
     max-width: 280px;
 }
 
+.subit-form{
+    height: 250px;
+    width: 250px;
+    margin: 0 auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.icon{
+    padding:10px;
+    min-width:40px;
+}
+
+.input-group i{
+    position:absolute;
+}
