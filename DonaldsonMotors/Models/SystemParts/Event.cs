@@ -7,10 +7,11 @@ namespace DonaldsonMotors.Models.SystemParts
 {
     public class Event
     {
+        public Int64 id { get; set; }
         public string title { get; set; }
-        public DateTime date { get; set; }
-        public int start { get; set; }
-        public int end { get; set; }
+        public string start { get; set; }
+        public string end { get; set; }
+        public bool allDay { get; set; }
 
     }
 }
