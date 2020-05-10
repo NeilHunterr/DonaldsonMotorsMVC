@@ -185,6 +185,7 @@
     <Compile Include="Models\SystemParts\Order.cs" />
     <Compile Include="Models\SystemParts\Part.cs" />
     <Compile Include="Models\SystemParts\PartUsed.cs" />
+    <Compile Include="Models\SystemParts\Slot.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Actors\User.cs" />

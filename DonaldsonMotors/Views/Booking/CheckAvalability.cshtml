@@ -2,7 +2,7 @@
     Layout = "";
 }
 
-@model DonaldsonMotors.Models.SystemParts.Booking
+@model DonaldsonMotors.Models.SystemParts.Slot
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,14 +72,14 @@
                     <div class="submit-form">
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
-
-                            <form method="post">
+                            @using (Html.BeginForm("GetSlotsList", "Booking"))
+                            {
 
                                 <div class="form-group ">
                                     <div class="input-group">
 
                                             <i class="fa fa-calendar icon"></i>
-                                            <input class="form-control center-block" id="date" name="date" placeholder="MM/DD/YYYY" type="text" />
+                                            <input class="form-control center-block" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
                                         
                                     </div>
                                 </div>
@@ -87,12 +87,12 @@
                                 <div class="form-group" style="align-content:center">
                                     <div>
                                         <button class="btn btn-primary " name="submit" type="submit">
-                                            Submit
+                                            @Html.ActionLink("Check", "GetSlotsList")
                                         </button>
                                     </div>
                                 </div>
+                            }
 
-                            </form>
                         </div>
                     </div>
                 </div>
