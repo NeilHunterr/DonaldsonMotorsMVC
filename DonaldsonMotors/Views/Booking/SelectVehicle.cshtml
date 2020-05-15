@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DonaldsonMotors.Models.Actors.Vehicle>
+
+@{
+    ViewBag.Title = "SelectVehicle";
+}
+
+<h2>SelectVehicle</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductionYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MOTDue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mileage)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manufacturer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductionYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MOTDue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mileage)
+        </td>
+        <td>
+            @Html.HiddenFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.ActionLink("Select", "BookNow", new { id=item.Registration }) 
+        </td>
+    </tr>
+}
+
+</table>

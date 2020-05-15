@@ -20,8 +20,8 @@ namespace DonaldsonMotors.Models.SystemParts
         public string PartId { get; set; }
         public Part Part { get; set; }
 
-        [ForeignKey("Job")]
-        public string JobId { get; set; }
-        public Job Job { get; set; }
+        [ForeignKey("Booking")]
+        public string BookingId { get; set; }
+        public Booking Booking { get; set; }
     }
 }

@@ -202,10 +202,10 @@
           });
           mutationObserver.observe(stickyElement, {subtree: true, childList: true});
         } else {
-          stickyElement.addEventListener('DOMNodeInserted', function() {
+          stickyElement.addslotsener('DOMNodeInserted', function() {
             methods.setWrapperHeight(stickyElement);
           }, false);
-          stickyElement.addEventListener('DOMNodeRemoved', function() {
+          stickyElement.addslotsener('DOMNodeRemoved', function() {
             methods.setWrapperHeight(stickyElement);
           }, false);
         }
@@ -241,9 +241,9 @@
     };
 
   // should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
-  if (window.addEventListener) {
-    window.addEventListener('scroll', scroller, false);
-    window.addEventListener('resize', resizer, false);
+  if (window.addslotsener) {
+    window.addslotsener('scroll', scroller, false);
+    window.addslotsener('resize', resizer, false);
   } else if (window.attachEvent) {
     window.attachEvent('onscroll', scroller);
     window.attachEvent('onresize', resizer);

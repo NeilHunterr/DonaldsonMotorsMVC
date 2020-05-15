@@ -724,7 +724,7 @@
       this._touchSupported = 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0;
       this._pointerEvent = Boolean(window.PointerEvent || window.MSPointerEvent);
 
-      this._addEventListeners();
+      this._addslotseners();
     } // Getters
 
 
@@ -849,7 +849,7 @@
       }
     };
 
-    _proto._addEventListeners = function _addEventListeners() {
+    _proto._addslotseners = function _addslotseners() {
       var _this2 = this;
 
       if (this._config.keyboard) {
@@ -867,11 +867,11 @@
       }
 
       if (this._config.touch) {
-        this._addTouchEventListeners();
+        this._addTouchslotseners();
       }
     };
 
-    _proto._addTouchEventListeners = function _addTouchEventListeners() {
+    _proto._addTouchslotseners = function _addTouchslotseners() {
       var _this3 = this;
 
       if (!this._touchSupported) {
@@ -2590,7 +2590,7 @@
       this.popper.style[getSupportedPropertyName('transform')] = '';
     }
 
-    this.disableEventListeners();
+    this.disableslotseners();
 
     // remove the popper if user explicitly asked for the deletion on destroy
     // do not use `remove` because IE11 doesn't support it
@@ -2613,7 +2613,7 @@
   function attachToScrollParents(scrollParent, event, callback, scrollParents) {
     var isBody = scrollParent.nodeName === 'BODY';
     var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
-    target.addEventListener(event, callback, { passive: true });
+    target.addslotsener(event, callback, { passive: true });
 
     if (!isBody) {
       attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
@@ -2627,10 +2627,10 @@
    * @memberof Popper.Utils
    * @private
    */
-  function setupEventListeners(reference, options, state, updateBound) {
+  function setupslotseners(reference, options, state, updateBound) {
     // Resize event listener on window
     state.updateBound = updateBound;
-    getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
+    getWindow(reference).addslotsener('resize', state.updateBound, { passive: true });
 
     // Scroll event listener on scroll parents
     var scrollElement = getScrollParent(reference);
@@ -2647,9 +2647,9 @@
    * @method
    * @memberof Popper
    */
-  function enableEventListeners() {
+  function enableslotseners() {
     if (!this.state.eventsEnabled) {
-      this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
+      this.state = setupslotseners(this.reference, this.options, this.state, this.scheduleUpdate);
     }
   }
 
@@ -2659,13 +2659,13 @@
    * @memberof Popper.Utils
    * @private
    */
-  function removeEventListeners(reference, state) {
+  function removeslotseners(reference, state) {
     // Remove resize event listener on window
-    getWindow(reference).removeEventListener('resize', state.updateBound);
+    getWindow(reference).removeslotsener('resize', state.updateBound);
 
     // Remove scroll event listener on scroll parents
     state.scrollParents.forEach(function (target) {
-      target.removeEventListener('scroll', state.updateBound);
+      target.removeslotsener('scroll', state.updateBound);
     });
 
     // Reset state
@@ -2683,10 +2683,10 @@
    * @method
    * @memberof Popper
    */
-  function disableEventListeners() {
+  function disableslotseners() {
     if (this.state.eventsEnabled) {
       cancelAnimationFrame(this.scheduleUpdate);
-      this.state = removeEventListeners(this.reference, this.state);
+      this.state = removeslotseners(this.reference, this.state);
     }
   }
 
@@ -4106,7 +4106,7 @@
       var eventsEnabled = this.options.eventsEnabled;
       if (eventsEnabled) {
         // setup event listeners, they will take care of update the position in specific situations
-        this.enableEventListeners();
+        this.enableslotseners();
       }
 
       this.state.eventsEnabled = eventsEnabled;
@@ -4127,14 +4127,14 @@
         return destroy.call(this);
       }
     }, {
-      key: 'enableEventListeners',
-      value: function enableEventListeners$$1() {
-        return enableEventListeners.call(this);
+      key: 'enableslotseners',
+      value: function enableslotseners$$1() {
+        return enableslotseners.call(this);
       }
     }, {
-      key: 'disableEventListeners',
-      value: function disableEventListeners$$1() {
-        return disableEventListeners.call(this);
+      key: 'disableslotseners',
+      value: function disableslotseners$$1() {
+        return disableslotseners.call(this);
       }
 
       /**
@@ -4284,7 +4284,7 @@
       this._menu = this._getMenuElement();
       this._inNavbar = this._detectNavbar();
 
-      this._addEventListeners();
+      this._addslotseners();
     } // Getters
 
 
@@ -4425,7 +4425,7 @@
     } // Private
     ;
 
-    _proto._addEventListeners = function _addEventListeners() {
+    _proto._addslotseners = function _addslotseners() {
       var _this = this;
 
       $(this._element).on(Event$4.CLICK, function (event) {

@@ -725,7 +725,7 @@
       this._touchSupported = 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0;
       this._pointerEvent = Boolean(window.PointerEvent || window.MSPointerEvent);
 
-      this._addEventListeners();
+      this._addslotseners();
     } // Getters
 
 
@@ -850,7 +850,7 @@
       }
     };
 
-    _proto._addEventListeners = function _addEventListeners() {
+    _proto._addslotseners = function _addslotseners() {
       var _this2 = this;
 
       if (this._config.keyboard) {
@@ -868,11 +868,11 @@
       }
 
       if (this._config.touch) {
-        this._addTouchEventListeners();
+        this._addTouchslotseners();
       }
     };
 
-    _proto._addTouchEventListeners = function _addTouchEventListeners() {
+    _proto._addTouchslotseners = function _addTouchslotseners() {
       var _this3 = this;
 
       if (!this._touchSupported) {
@@ -1671,7 +1671,7 @@
       this._menu = this._getMenuElement();
       this._inNavbar = this._detectNavbar();
 
-      this._addEventListeners();
+      this._addslotseners();
     } // Getters
 
 
@@ -1812,7 +1812,7 @@
     } // Private
     ;
 
-    _proto._addEventListeners = function _addEventListeners() {
+    _proto._addslotseners = function _addslotseners() {
       var _this = this;
 
       $(this._element).on(Event$4.CLICK, function (event) {

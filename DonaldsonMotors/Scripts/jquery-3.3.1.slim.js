@@ -1086,8 +1086,8 @@ setDocument = Sizzle.setDocument = function( node ) {
 		(subWindow = document.defaultView) && subWindow.top !== subWindow ) {
 
 		// Support: IE 11, Edge
-		if ( subWindow.addEventListener ) {
-			subWindow.addEventListener( "unload", unloadHandler, false );
+		if ( subWindow.addslotsener ) {
+			subWindow.addslotsener( "unload", unloadHandler, false );
 
 		// Support: IE 9 - 10 only
 		} else if ( subWindow.attachEvent ) {
@@ -3883,8 +3883,8 @@ jQuery.ready.then = readyList.then;
 
 // The ready event handler and self cleanup method
 function completed() {
-	document.removeEventListener( "DOMContentLoaded", completed );
-	window.removeEventListener( "load", completed );
+	document.removeslotsener( "DOMContentLoaded", completed );
+	window.removeslotsener( "load", completed );
 	jQuery.ready();
 }
 
@@ -3901,10 +3901,10 @@ if ( document.readyState === "complete" ||
 } else {
 
 	// Use the handy event callback
-	document.addEventListener( "DOMContentLoaded", completed );
+	document.addslotsener( "DOMContentLoaded", completed );
 
 	// A fallback to window.onload, that will always work
-	window.addEventListener( "load", completed );
+	window.addslotsener( "load", completed );
 }
 
 
@@ -5031,12 +5031,12 @@ jQuery.event = {
 				handlers = events[ type ] = [];
 				handlers.delegateCount = 0;
 
-				// Only use addEventListener if the special events handler returns false
+				// Only use addslotsener if the special events handler returns false
 				if ( !special.setup ||
 					special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
 
-					if ( elem.addEventListener ) {
-						elem.addEventListener( type, eventHandle );
+					if ( elem.addslotsener ) {
+						elem.addslotsener( type, eventHandle );
 					}
 				}
 			}
@@ -5350,8 +5350,8 @@ jQuery.event = {
 jQuery.removeEvent = function( elem, type, handle ) {
 
 	// This "if" is needed for plain objects
-	if ( elem.removeEventListener ) {
-		elem.removeEventListener( type, handle );
+	if ( elem.removeslotsener ) {
+		elem.removeslotsener( type, handle );
 	}
 };
 
@@ -7489,13 +7489,13 @@ jQuery.extend( jQuery.event, {
 					jQuery.event.triggered = type;
 
 					if ( event.isPropagationStopped() ) {
-						lastElement.addEventListener( type, stopPropagationCallback );
+						lastElement.addslotsener( type, stopPropagationCallback );
 					}
 
 					elem[ type ]();
 
 					if ( event.isPropagationStopped() ) {
-						lastElement.removeEventListener( type, stopPropagationCallback );
+						lastElement.removeslotsener( type, stopPropagationCallback );
 					}
 
 					jQuery.event.triggered = undefined;
@@ -7565,7 +7565,7 @@ if ( !support.focusin ) {
 					attaches = dataPriv.access( doc, fix );
 
 				if ( !attaches ) {
-					doc.addEventListener( orig, handler, true );
+					doc.addslotsener( orig, handler, true );
 				}
 				dataPriv.access( doc, fix, ( attaches || 0 ) + 1 );
 			},
@@ -7574,7 +7574,7 @@ if ( !support.focusin ) {
 					attaches = dataPriv.access( doc, fix ) - 1;
 
 				if ( !attaches ) {
-					doc.removeEventListener( orig, handler, true );
+					doc.removeslotsener( orig, handler, true );
 					dataPriv.remove( doc, fix );
 
 				} else {

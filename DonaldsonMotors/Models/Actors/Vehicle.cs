@@ -30,7 +30,7 @@ namespace DonaldsonMotors.Models.Actors
 
         [Required]
         [Display(Name = "Service History")]
-        public List<Job> ServiceHistory { get; set; }
+        public List<Booking> ServiceHistory { get; set; }
 
         [ForeignKey("Customer")]
         public string UserId { get; set; }

@@ -170,7 +170,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,7 +180,6 @@
     <Compile Include="Models\Actors\Supplier.cs" />
     <Compile Include="Models\Actors\Vehicle.cs" />
     <Compile Include="Models\SystemParts\Booking.cs" />
-    <Compile Include="Models\SystemParts\Job.cs" />
     <Compile Include="Models\SystemParts\Order.cs" />
     <Compile Include="Models\SystemParts\Part.cs" />
     <Compile Include="Models\SystemParts\PartUsed.cs" />
@@ -410,10 +408,10 @@
     <Content Include="vendor\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="vendor\jquery\jquery.min.map" />
     <Content Include="Views\Booking\CheckAvalability.cshtml" />
+    <Content Include="Views\Booking\SelectVehicle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Job\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

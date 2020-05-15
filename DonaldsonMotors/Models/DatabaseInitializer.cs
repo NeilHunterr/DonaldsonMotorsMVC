@@ -79,8 +79,6 @@ namespace DonaldsonMotors.Models
                     ContractEndDate = null
                 };
 
-                GM.Jobs = new List<Job>();
-
                 //add the hashed password to the user
                 userManager.Create(GM, "lambo123");
 
@@ -345,6 +343,76 @@ namespace DonaldsonMotors.Models
                 userManager.AddToRole(cust2.Id, "Customer");
 
                 //save DB
+                context.SaveChanges();
+
+                //Make Vehicles
+
+                var Vehicle1 = new Vehicle
+                {
+                    Registration = "",
+                    Manufacturer = "",
+                    Model = "",
+                    ProductionYear = "",
+                    Mileage = 25430,
+                    MOTDue = DateTime.Now.AddYears(1)
+                };
+
+                Vehicle1.Customer = cust1;
+                Vehicle1.UserId = cust1.Id;
+
+                context.Vehicles.Add(Vehicle1);
+
+                context.SaveChanges();
+
+                var Vehicle2 = new Vehicle
+                {
+                    Registration = "",
+                    Manufacturer = "",
+                    Model = "",
+                    ProductionYear = "",
+                    Mileage = 25430,
+                    MOTDue = DateTime.Now.AddYears(1)
+                };
+
+                Vehicle2.Customer = cust1;
+                Vehicle2.UserId = cust1.Id;
+
+                context.Vehicles.Add(Vehicle2);
+
+                context.SaveChanges();
+
+                var Vehicle3 = new Vehicle
+                {
+                    Registration = "",
+                    Manufacturer = "",
+                    Model = "",
+                    ProductionYear = "",
+                    Mileage = 25430,
+                    MOTDue = DateTime.Now.AddYears(1)
+                };
+
+                Vehicle3.Customer = cust2;
+                Vehicle3.UserId = cust2.Id;
+
+                context.Vehicles.Add(Vehicle3);
+
+                context.SaveChanges();
+
+                var Vehicle4 = new Vehicle
+                {
+                    Registration = "",
+                    Manufacturer = "",
+                    Model = "",
+                    ProductionYear = "",
+                    Mileage = 25430,
+                    MOTDue = DateTime.Now.AddYears(1)
+                };
+
+                Vehicle4.Customer = cust2;
+                Vehicle4.UserId = cust2.Id;
+
+                context.Vehicles.Add(Vehicle4);
+
                 context.SaveChanges();
             }
 

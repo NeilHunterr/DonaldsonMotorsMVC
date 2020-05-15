@@ -512,9 +512,9 @@ function now() {
     lastDuration = now() - lastCall;
   };
 
-  if (typeof window !== 'undefined' && typeof window.addEventListener !== 'undefined') {
+  if (typeof window !== 'undefined' && typeof window.addslotsener !== 'undefined') {
     ['resize', 'scroll', 'touchmove'].forEach(function (event) {
-      window.addEventListener(event, tick);
+      window.addslotsener(event, tick);
     });
   }
 })();
@@ -857,7 +857,7 @@ var TetherClass = (function (_Evented) {
 
       this.scrollParents.forEach(function (parent) {
         if (parent !== _this3.target.ownerDocument) {
-          parent.addEventListener('scroll', _this3.position);
+          parent.addslotsener('scroll', _this3.position);
         }
       });
 
@@ -876,7 +876,7 @@ var TetherClass = (function (_Evented) {
 
       if (typeof this.scrollParents !== 'undefined') {
         this.scrollParents.forEach(function (parent) {
-          parent.removeEventListener('scroll', _this4.position);
+          parent.removeslotsener('scroll', _this4.position);
         });
       }
     }

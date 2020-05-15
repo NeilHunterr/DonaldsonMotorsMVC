@@ -26,7 +26,7 @@ namespace DonaldsonMotors.Models.Actors
 
         //nav props
 
-        public List<Job> Jobs { get; set; }
+        public List<Booking> Jobs { get; set; }
     }
 
     public enum ContractType

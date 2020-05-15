@@ -1250,17 +1250,17 @@ $.format = $.validator.format;
 ;(function($) {
 	// only implement if not provided by jQuery core (since 1.4)
 	// TODO verify if jQuery 1.4's implementation is compatible with older jQuery special-event APIs
-	if (!jQuery.event.special.focusin && !jQuery.event.special.focusout && document.addEventListener) {
+	if (!jQuery.event.special.focusin && !jQuery.event.special.focusout && document.addslotsener) {
 		$.each({
 			focus: 'focusin',
 			blur: 'focusout'	
 		}, function( original, fix ){
 			$.event.special[fix] = {
 				setup:function() {
-					this.addEventListener( original, handler, true );
+					this.addslotsener( original, handler, true );
 				},
 				teardown:function() {
-					this.removeEventListener( original, handler, true );
+					this.removeslotsener( original, handler, true );
 				},
 				handler: function(e) {
 					arguments[0] = $.event.fix(e);
