@@ -14,7 +14,6 @@ namespace DonaldsonMotors.Models
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<Job> Jobs { get; set; }
         public DbSet<PartUsed> PartsUsed { get; set; }
         public DbSet<Part> Parts { get; set; }
         public DbSet<Order> Orders { get; set; }

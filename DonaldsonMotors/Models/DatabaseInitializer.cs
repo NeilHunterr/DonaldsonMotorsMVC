@@ -309,7 +309,9 @@ namespace DonaldsonMotors.Models
                     PostCode = "PA1 1HL",
 
                     //customer props
-                    CustomerType = CustomerType.General
+                    CustomerType = CustomerType.General,
+
+                    Vehicles = new List<Vehicle>()
                     
                 };
 
@@ -332,7 +334,9 @@ namespace DonaldsonMotors.Models
                     PostCode = "G87 8DD",
 
                     //customer props
-                    CustomerType = CustomerType.Corporate
+                    CustomerType = CustomerType.Corporate,
+
+                    Vehicles = new List<Vehicle>()
 
                 };
 
@@ -349,16 +353,19 @@ namespace DonaldsonMotors.Models
 
                 var Vehicle1 = new Vehicle
                 {
-                    Registration = "",
-                    Manufacturer = "",
-                    Model = "",
-                    ProductionYear = "",
+                    Registration = "G101 DFX",
+                    Manufacturer = "FORD",
+                    Model = "FOCUS",
+                    ProductionYear = " 2011",
                     Mileage = 25430,
-                    MOTDue = DateTime.Now.AddYears(1)
+                    MOTDue = DateTime.Now.AddYears(1),
+                    ServiceHistory = new List<Booking>()
                 };
 
                 Vehicle1.Customer = cust1;
-                Vehicle1.UserId = cust1.Id;
+                //Vehicle1.Id = cust1.Id;
+
+                cust1.Vehicles.Add(Vehicle1);
 
                 context.Vehicles.Add(Vehicle1);
 
@@ -366,16 +373,19 @@ namespace DonaldsonMotors.Models
 
                 var Vehicle2 = new Vehicle
                 {
-                    Registration = "",
-                    Manufacturer = "",
-                    Model = "",
-                    ProductionYear = "",
+                    Registration = "Y506 CSS",
+                    Manufacturer = "BMW",
+                    Model = "M3",
+                    ProductionYear = "2006",
                     Mileage = 25430,
-                    MOTDue = DateTime.Now.AddYears(1)
+                    MOTDue = DateTime.Now.AddYears(1),
+                    ServiceHistory = new List<Booking>()
                 };
 
                 Vehicle2.Customer = cust1;
-                Vehicle2.UserId = cust1.Id;
+                //Vehicle2.Id = cust1.Id;
+
+                cust1.Vehicles.Add(Vehicle2);
 
                 context.Vehicles.Add(Vehicle2);
 
@@ -383,16 +393,19 @@ namespace DonaldsonMotors.Models
 
                 var Vehicle3 = new Vehicle
                 {
-                    Registration = "",
-                    Manufacturer = "",
-                    Model = "",
-                    ProductionYear = "",
+                    Registration = "F334 SAZ",
+                    Manufacturer = "AUDI",
+                    Model = "A4",
+                    ProductionYear = "2014",
                     Mileage = 25430,
-                    MOTDue = DateTime.Now.AddYears(1)
+                    MOTDue = DateTime.Now.AddYears(1),
+                    ServiceHistory = new List<Booking>()
                 };
 
                 Vehicle3.Customer = cust2;
-                Vehicle3.UserId = cust2.Id;
+                Vehicle3.Id = cust2.Id;
+
+                cust2.Vehicles.Add(Vehicle3);
 
                 context.Vehicles.Add(Vehicle3);
 
@@ -400,16 +413,19 @@ namespace DonaldsonMotors.Models
 
                 var Vehicle4 = new Vehicle
                 {
-                    Registration = "",
-                    Manufacturer = "",
-                    Model = "",
-                    ProductionYear = "",
+                    Registration = "S445 JJH",
+                    Manufacturer = "FIAT",
+                    Model = "500",
+                    ProductionYear = "2015",
                     Mileage = 25430,
-                    MOTDue = DateTime.Now.AddYears(1)
+                    MOTDue = DateTime.Now.AddYears(1),
+                    ServiceHistory = new List<Booking>()
                 };
 
                 Vehicle4.Customer = cust2;
-                Vehicle4.UserId = cust2.Id;
+                Vehicle4.Id = cust2.Id;
+
+                cust2.Vehicles.Add(Vehicle4);
 
                 context.Vehicles.Add(Vehicle4);
 

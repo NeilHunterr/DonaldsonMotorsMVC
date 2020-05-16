@@ -31,11 +31,13 @@ namespace DonaldsonMotors.Controllers
 
             List<Vehicle> OwnedVehicles = new List<Vehicle>();
 
-            OwnedVehicles = context.Vehicles.Where(v => v.UserId == User.Identity.GetUserId()).ToList();
+            string id = User.Identity.GetUserId();
+
+            OwnedVehicles = context.Vehicles.Where(v => v.Id == id).ToList();
 
             Session["Date"] = date;
 
-            return View(new { OwnedVehicles });
+            return View(OwnedVehicles);
         }
 
         [HttpGet]

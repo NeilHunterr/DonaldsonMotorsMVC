@@ -48,7 +48,7 @@
             @Html.DisplayFor(modelItem => item.Mileage)
         </td>
         <td>
-            @Html.HiddenFor(modelItem => item.UserId)
+            @Html.HiddenFor(modelItem => item.Id)
         </td>
         <td>
             @Html.ActionLink("Select", "BookNow", new { id=item.Registration }) 

@@ -33,7 +33,7 @@ namespace DonaldsonMotors.Models.Actors
         public List<Booking> ServiceHistory { get; set; }
 
         [ForeignKey("Customer")]
-        public string UserId { get; set; }
+        public string Id { get; set; }
         public Customer Customer { get; set; }
 
     }

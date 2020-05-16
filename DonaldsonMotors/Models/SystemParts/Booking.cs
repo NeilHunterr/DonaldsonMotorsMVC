@@ -37,7 +37,7 @@ namespace DonaldsonMotors.Models.SystemParts
 
 
         [ForeignKey("Vehicle")]
-        public string VehicleId { get; set; }
+        public string Registration { get; set; }
         public Vehicle Vehicle { get; set; }
 
     }
