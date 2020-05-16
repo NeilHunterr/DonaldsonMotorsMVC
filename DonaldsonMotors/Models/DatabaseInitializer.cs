@@ -362,10 +362,10 @@ namespace DonaldsonMotors.Models
                     ServiceHistory = new List<Booking>()
                 };
 
-                Vehicle1.Customer = cust1;
-                //Vehicle1.Id = cust1.Id;
+                //Vehicle1.Customer = cust1;
+                Vehicle1.Id = cust1.Id;
 
-                cust1.Vehicles.Add(Vehicle1);
+                //cust1.Vehicles.Add(Vehicle1);
 
                 context.Vehicles.Add(Vehicle1);
 
@@ -382,10 +382,10 @@ namespace DonaldsonMotors.Models
                     ServiceHistory = new List<Booking>()
                 };
 
-                Vehicle2.Customer = cust1;
-                //Vehicle2.Id = cust1.Id;
+                //Vehicle2.Customer = cust1;
+                Vehicle2.Id = cust1.Id;
 
-                cust1.Vehicles.Add(Vehicle2);
+                //cust1.Vehicles.Add(Vehicle2);
 
                 context.Vehicles.Add(Vehicle2);
 

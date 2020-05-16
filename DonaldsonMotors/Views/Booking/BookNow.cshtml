@@ -1,0 +1,64 @@
+﻿@model DonaldsonMotors.Models.SystemParts.Booking
+
+@using DonaldsonMotors.Models.SystemParts
+@using DonaldsonMotors.Models.Actors
+
+@{
+    ViewBag.Title = "BookNow";
+}
+
+<h2>BookNow</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Booking</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.Label("Date: " + Session["Date"].ToString())
+        <div class="col-md-10">
+        </div>
+    </div>
+
+    @{ 
+        Vehicle vehicle = (Vehicle)Session["Vehicle"];
+    }
+
+    <div class="form-group">
+        @Html.Label("Vehicle: ")
+        <div class="col-md-10">
+            @Html.Label(vehicle.Registration + " " + vehicle.Manufacturer + " " + vehicle.Model)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ServiceType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ServiceType, Enum.GetValues(typeof(ServiceType)).Cast<ServiceType>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }))
+            @Html.ValidationMessageFor(model => model.ServiceType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ServiceNote, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ServiceNote, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ServiceNote, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

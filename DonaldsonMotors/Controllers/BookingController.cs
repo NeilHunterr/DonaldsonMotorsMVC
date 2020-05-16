@@ -41,8 +41,12 @@ namespace DonaldsonMotors.Controllers
         }
 
         [HttpGet]
-        public ActionResult BookNow()
+        public ActionResult BookNow(string id)
         {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            Session["Vehicle"] = context.Vehicles.Find(id);
+
             return View();
         }
 
@@ -53,13 +57,79 @@ namespace DonaldsonMotors.Controllers
 
             Booking bookingCon = new Booking
             {
-                BookingDate = model.BookingDate,
-                ServiceType = model.ServiceType
-                
+                ServiceType = model.ServiceType,
+                ServiceNote = model.ServiceNote,
+                Vehicle = (Vehicle)Session["Vehicle"],
+                BookingDate = (DateTime)Session["Date"],
+                CustId = User.Identity.GetUserId()               
             };
 
+            if(model.ServiceType == ServiceType.MOT)
+            {
+                bookingCon.EstimatedCost = 20;
+                bookingCon.Deposit = 5;
+            }
 
-            return RedirectToAction("BookingConfirm", new { booking = bookingCon });
+            if (model.ServiceType == ServiceType.OilChange)
+            {
+                bookingCon.EstimatedCost = 20;
+                bookingCon.Deposit = 5;
+            }
+
+            if (model.ServiceType == ServiceType.TyreChange)
+            {
+                bookingCon.EstimatedCost = 120;
+                bookingCon.Deposit = 20;
+            }
+
+            if (model.ServiceType == ServiceType.Repair)
+            {
+                bookingCon.EstimatedCost = 200;
+                bookingCon.Deposit = 30;
+            }
+
+
+            Session["Booking"] = bookingCon;
+
+            return RedirectToAction("BookingConfirm");
+        }
+
+        [HttpGet]
+        public ActionResult BookingConfirm()
+        {
+            Booking booking = (Booking)Session["Booking"];
+
+            return View(booking);
+        }
+
+        [HttpPost]
+        public ActionResult BookingConfirm(Booking model)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            Booking booking = (Booking)Session["Booking"];
+
+            List<Booking> activeBookings = context.Bookings.Where(b => b.Complete == false).ToList();
+
+            List<Staff> unavalStaff = new List<Staff>();
+
+            foreach(Booking b in activeBookings)
+            {
+                if(b.BookingDate == booking.BookingDate)
+                {
+                    unavalStaff.Add(b.Staff);
+                }          
+            }
+
+            List<Staff> avalStaff = context.Users.OfType<Staff>().Except(unavalStaff).ToList();
+
+            booking.Staff = avalStaff.First();
+            
+            context.Bookings.Add(booking);
+
+            context.SaveChanges();
+
+            return RedirectToAction("Index", "Home", null);
         }
 
 
@@ -88,11 +158,11 @@ namespace DonaldsonMotors.Controllers
 
                 foreach(Booking b in bookings)
                 {
-                    if (b.BookingDate == loopDate)
+                    if (b.BookingDate.Date == loopDate.Date)
                     {
                         Slot e = new Slot()
                         {
-                            date = b.BookingDate,
+                            date = b.BookingDate.Date,
                             start = b.BookingDate.Hour,
                             end = b.BookingDate.Hour + 1,
                             desc = "Unavailable"
@@ -108,7 +178,7 @@ namespace DonaldsonMotors.Controllers
                 {
                     foreach (Slot s in slots)
                     {
-                        if (s.date == loopDate)
+                        if (s.date == loopDate.Date)
                         {
                             if (s.date.Hour == 9)
                             {
@@ -142,7 +212,7 @@ namespace DonaldsonMotors.Controllers
 
                                 slots.Add(ev2);
                             }
-                            else if (s.date.Hour == 11)
+                            if (s.date.Hour == 11)
                             {
                                 Slot ev3 = new Slot()
                                 {
@@ -174,7 +244,7 @@ namespace DonaldsonMotors.Controllers
 
                                 slots.Add(ev5);
                             }
-                            else if (s.date.Hour == 13)
+                            if (s.date.Hour == 13)
                             {
                                 Slot ev6 = new Slot()
                                 {
@@ -206,7 +276,7 @@ namespace DonaldsonMotors.Controllers
 
                                 slots.Add(ev8);
                             }
-                            else if (s.date.Hour == 15)
+                            if (s.date.Hour == 15)
                             {
                                 Slot ev9 = new Slot()
                                 {

@@ -409,6 +409,8 @@
     <Content Include="vendor\jquery\jquery.min.map" />
     <Content Include="Views\Booking\CheckAvalability.cshtml" />
     <Content Include="Views\Booking\SelectVehicle.cshtml" />
+    <Content Include="Views\Booking\BookNow.cshtml" />
+    <Content Include="Views\Booking\BookingConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
