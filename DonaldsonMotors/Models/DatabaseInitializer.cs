@@ -170,7 +170,8 @@ namespace DonaldsonMotors.Models
                     NationalInsuranceNumber = "NE 21 33 S",
                     ContractType = ContractType.FullTime,
                     ContractStartDate = DateTime.Now.AddDays(-1200),
-                    ContractEndDate = null
+                    ContractEndDate = null,
+                    Jobs = new List<Booking>()
                 };
 
                 //add the hashed password to the user
@@ -198,7 +199,8 @@ namespace DonaldsonMotors.Models
                     NationalInsuranceNumber = "NE 21 33 S",
                     ContractType = ContractType.FullTime,
                     ContractStartDate = DateTime.Now.AddDays(-1200),
-                    ContractEndDate = null
+                    ContractEndDate = null,
+                    Jobs = new List<Booking>()
                 };
 
                 //add the hashed password to the user
@@ -227,7 +229,8 @@ namespace DonaldsonMotors.Models
                     NationalInsuranceNumber = "NE 21 33 S",
                     ContractType = ContractType.FullTime,
                     ContractStartDate = DateTime.Now.AddDays(-600),
-                    ContractEndDate = null
+                    ContractEndDate = null,
+                    Jobs = new List<Booking>()
                 };
 
                 //add the hashed password to the user
@@ -255,7 +258,8 @@ namespace DonaldsonMotors.Models
                     NationalInsuranceNumber = "NE 21 33 S",
                     ContractType = ContractType.FullTime,
                     ContractStartDate = DateTime.Now.AddDays(-543),
-                    ContractEndDate = null
+                    ContractEndDate = null,
+                    Jobs = new List<Booking>()
                 };
 
                 //add the hashed password to the user
@@ -283,7 +287,8 @@ namespace DonaldsonMotors.Models
                     NationalInsuranceNumber = "NE 21 33 S",
                     ContractType = ContractType.FullTime,
                     ContractStartDate = DateTime.Now.AddDays(-321),
-                    ContractEndDate = null
+                    ContractEndDate = null,
+                    Jobs = new List<Booking>()
                 };
 
                 //add the hashed password to the user

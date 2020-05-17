@@ -13,6 +13,8 @@ namespace DonaldsonMotors.Controllers
 {
     public class BookingController : Controller
     {
+        ApplicationDbContext context = new ApplicationDbContext();
+
         // GET: Booking
         public ActionResult Index()
         {
@@ -58,7 +60,6 @@ namespace DonaldsonMotors.Controllers
             }
             else
             {
-                ApplicationDbContext context = new ApplicationDbContext();
 
                 Session["Vehicle"] = context.Vehicles.Find(id);
 
@@ -69,7 +70,6 @@ namespace DonaldsonMotors.Controllers
         [HttpPost]
         public ActionResult BookNow(Booking model)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
 
             string id = User.Identity.GetUserId();
             Vehicle veh = (Vehicle)Session["Vehicle"];
@@ -137,8 +137,7 @@ namespace DonaldsonMotors.Controllers
         [HttpPost]
         public ActionResult BookingConfirm(Booking model)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-
+       
             Booking booking = (Booking)Session["Booking"];
 
             List<Booking> activeBookings = context.Bookings.Where(b => b.Complete == false).Include(b => b.Staff).ToList();
@@ -153,13 +152,19 @@ namespace DonaldsonMotors.Controllers
                 }          
             }
 
-            List<Staff> avalStaff = context.Users.OfType<Staff>().Except(unavalStaff).ToList();
+            List<Staff> avalStaff = context.Users.OfType<Staff>().Except(unavalStaff).Include(s => s.Jobs).ToList();
 
-            //booking.Staff = avalStaff.First();
+            booking.Staff = avalStaff.First();
             booking.StaffId = avalStaff.First().Id;
-            booking.Staff = (Staff)context.Users.Find(booking.StaffId);
+            //booking.Staff = (Staff)context.Users.Find(booking.StaffId);
 
-            Session.Abandon();
+            //Staff staff = booking.Staff;
+            //Customer customer = context.Users.OfType<Customer>().Where(c => c.Id == booking.CustId).Include(c => c.Bookings).First();
+            //Vehicle vehicle = context.Vehicles.Where(v => v.Registration == booking.Registration).Include(v => v.ServiceHistory).First();
+
+            //staff.Jobs.Add(booking);
+            //customer.Bookings.Add(booking);
+            //vehicle.ServiceHistory.Add(booking);
 
             context.Bookings.Add(booking);
 
