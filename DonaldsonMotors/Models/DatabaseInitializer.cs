@@ -310,7 +310,7 @@ namespace DonaldsonMotors.Models
 
                     //customer props
                     CustomerType = CustomerType.General,
-
+                    Bookings = new List<Booking>(),
                     Vehicles = new List<Vehicle>()
                     
                 };
@@ -335,7 +335,7 @@ namespace DonaldsonMotors.Models
 
                     //customer props
                     CustomerType = CustomerType.Corporate,
-
+                    Bookings = new List<Booking>(),
                     Vehicles = new List<Vehicle>()
 
                 };
@@ -360,6 +360,7 @@ namespace DonaldsonMotors.Models
                     Mileage = 25430,
                     MOTDue = DateTime.Now.AddYears(1),
                     ServiceHistory = new List<Booking>()
+
                 };
 
                 //Vehicle1.Customer = cust1;
@@ -402,10 +403,10 @@ namespace DonaldsonMotors.Models
                     ServiceHistory = new List<Booking>()
                 };
 
-                Vehicle3.Customer = cust2;
+                //Vehicle3.Customer = cust2;
                 Vehicle3.Id = cust2.Id;
 
-                cust2.Vehicles.Add(Vehicle3);
+                //cust2.Vehicles.Add(Vehicle3);
 
                 context.Vehicles.Add(Vehicle3);
 
@@ -422,10 +423,10 @@ namespace DonaldsonMotors.Models
                     ServiceHistory = new List<Booking>()
                 };
 
-                Vehicle4.Customer = cust2;
+                //Vehicle4.Customer = cust2;
                 Vehicle4.Id = cust2.Id;
 
-                cust2.Vehicles.Add(Vehicle4);
+                //cust2.Vehicles.Add(Vehicle4);
 
                 context.Vehicles.Add(Vehicle4);
 

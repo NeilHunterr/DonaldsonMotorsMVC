@@ -59,7 +59,9 @@
                 <p class="tagline">
                     Mechanics you can trust.
                 </p>
-                <a class="btn btn-full" href="#about">Book Now</a>
+                <p>
+                    @Html.ActionLink("BookNow", "CheckAvalability", "Booking", null, new { htmlAttributes = new { @class = "btn btn-full" } })
+                </p>
             </div>
         </div>
 

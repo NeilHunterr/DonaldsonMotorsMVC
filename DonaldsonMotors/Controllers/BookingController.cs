@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 
 namespace DonaldsonMotors.Controllers
 {
@@ -20,34 +21,49 @@ namespace DonaldsonMotors.Controllers
         
         public ActionResult CheckAvalability()
         {
-            var slots = GetSlotsList().ToList();
+             var slots = GetSlotsList().ToList();
 
-            return View(slots);
+             return View(slots);
+            
         }
 
         public ActionResult SelectVehicle(DateTime date)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            else
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
 
-            List<Vehicle> OwnedVehicles = new List<Vehicle>();
+                List<Vehicle> OwnedVehicles = new List<Vehicle>();
 
-            string id = User.Identity.GetUserId();
+                string id = User.Identity.GetUserId();
 
-            OwnedVehicles = context.Vehicles.Where(v => v.Id == id).ToList();
+                OwnedVehicles = context.Vehicles.Where(v => v.Id == id).ToList();
 
-            Session["Date"] = date;
+                Session["Date"] = date;
 
-            return View(OwnedVehicles);
+                return View(OwnedVehicles);
+            }
         }
 
         [HttpGet]
         public ActionResult BookNow(string id)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            else
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
 
-            Session["Vehicle"] = context.Vehicles.Find(id);
+                Session["Vehicle"] = context.Vehicles.Find(id);
 
-            return View();
+                return View();
+            }
         }
 
         [HttpPost]
@@ -55,13 +71,22 @@ namespace DonaldsonMotors.Controllers
         {
             ApplicationDbContext context = new ApplicationDbContext();
 
+            string id = User.Identity.GetUserId();
+            Vehicle veh = (Vehicle)Session["Vehicle"];
+            string reg = veh.Registration;
+
+            Customer customer = (Customer)context.Users.Find(id);
+
             Booking bookingCon = new Booking
             {
                 ServiceType = model.ServiceType,
                 ServiceNote = model.ServiceNote,
-                Vehicle = (Vehicle)Session["Vehicle"],
+                Vehicle = veh,
+                Registration = reg,
                 BookingDate = (DateTime)Session["Date"],
-                CustId = User.Identity.GetUserId()               
+                CustId = id,
+                Customer = customer,
+                PartsUsed = new List<PartUsed>()
             };
 
             if(model.ServiceType == ServiceType.MOT)
@@ -97,9 +122,16 @@ namespace DonaldsonMotors.Controllers
         [HttpGet]
         public ActionResult BookingConfirm()
         {
-            Booking booking = (Booking)Session["Booking"];
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            else
+            {
+                Booking booking = (Booking)Session["Booking"];
 
-            return View(booking);
+                return View(booking);
+            }
         }
 
         [HttpPost]
@@ -109,7 +141,7 @@ namespace DonaldsonMotors.Controllers
 
             Booking booking = (Booking)Session["Booking"];
 
-            List<Booking> activeBookings = context.Bookings.Where(b => b.Complete == false).ToList();
+            List<Booking> activeBookings = context.Bookings.Where(b => b.Complete == false).Include(b => b.Staff).ToList();
 
             List<Staff> unavalStaff = new List<Staff>();
 
@@ -123,8 +155,12 @@ namespace DonaldsonMotors.Controllers
 
             List<Staff> avalStaff = context.Users.OfType<Staff>().Except(unavalStaff).ToList();
 
-            booking.Staff = avalStaff.First();
-            
+            //booking.Staff = avalStaff.First();
+            booking.StaffId = avalStaff.First().Id;
+            booking.Staff = (Staff)context.Users.Find(booking.StaffId);
+
+            Session.Abandon();
+
             context.Bookings.Add(booking);
 
             context.SaveChanges();
