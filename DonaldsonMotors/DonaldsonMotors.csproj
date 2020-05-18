@@ -168,7 +168,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -411,6 +413,12 @@
     <Content Include="Views\Booking\SelectVehicle.cshtml" />
     <Content Include="Views\Booking\BookNow.cshtml" />
     <Content Include="Views\Booking\BookingConfirm.cshtml" />
+    <Content Include="Views\Customer\MyAccount.cshtml" />
+    <Content Include="Views\Admin\AdminPage.cshtml" />
+    <Content Include="Views\Admin\ActiveBookings.cshtml" />
+    <Content Include="Views\Admin\PastBookings.cshtml" />
+    <Content Include="Views\Customer\ActiveBookings.cshtml" />
+    <Content Include="Views\Customer\PastBookings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

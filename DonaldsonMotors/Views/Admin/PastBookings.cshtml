@@ -1,0 +1,97 @@
+﻿@model IEnumerable<DonaldsonMotors.Models.SystemParts.Booking>
+
+@{
+    ViewBag.Title = "PastBookings";
+}
+
+<h2>PastBookings</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cancelled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CancelationReason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstimatedCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deposit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Complete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceNote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Staff.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Registration)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cancelled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CancelationReason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstimatedCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deposit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Complete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceNote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Staff.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Registration)
+        </td>
+        <td>
+            @Html.ActionLink("Get PDF", "GetPDF", new { id=item.BookingId })
+        </td>
+    </tr>
+}
+
+</table>

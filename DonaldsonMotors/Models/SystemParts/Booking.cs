@@ -11,7 +11,7 @@ namespace DonaldsonMotors.Models.SystemParts
     public class Booking
     {
         [Key]
-        public string BookingId { get; set; }
+        public int BookingId { get; set; }
         public DateTime BookingDate { get; set; }
         public bool CheckIn { get; set; }
         public bool Cancelled { get; set; }

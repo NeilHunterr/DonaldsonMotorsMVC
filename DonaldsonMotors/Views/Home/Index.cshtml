@@ -82,16 +82,24 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <ul class="nav-menu">
-                            <li><a href="#features">Services</a></li>
-                            <li><a href="#portfolio">Book Now</a></li>
-                            <li>@Html.ActionLink("Check Avalability", "CheckAvalability", "Booking")</li>
-                            <li><a href="#contact">Contact Us</a></li>
-                            <li>
-                                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                            </li>
-                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                        </ul>
+                <ul class="nav-menu">
+                    <li><a href="#features">Services</a></li>
+                    <li><a href="#portfolio">Book Now</a></li>
+                    <li>@Html.ActionLink("Check Avalability", "CheckAvalability", "Booking")</li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li>
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    </li>
+                    @if (User.IsInRole("Customer"))
+                    {
+                        <li>@Html.ActionLink("My Account", "MyAccount", "Customer")</li>
+                    }
+                    @if(User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Admin", "AdminPage", "Admin")</li>
+                    }
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>
                     }
                 }
                 else

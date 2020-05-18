@@ -21,7 +21,7 @@ namespace DonaldsonMotors.Models.SystemParts
         public Part Part { get; set; }
 
         [ForeignKey("Booking")]
-        public string BookingId { get; set; }
+        public int BookingId { get; set; }
         public Booking Booking { get; set; }
     }
 }

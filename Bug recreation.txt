@@ -1,0 +1,17 @@
+Login
+
+username - fredeast@gmail.com
+password - password123
+
+click book now
+
+select a time slot
+
+select a vehicle for booking
+
+select a service and leave a brief note to mechanic
+
+view booking confirmation and accept
+
+*Here is where the bug occurs*
+

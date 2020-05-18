@@ -37,13 +37,12 @@ namespace DonaldsonMotors.Controllers
             }
             else
             {
-                ApplicationDbContext context = new ApplicationDbContext();
 
                 List<Vehicle> OwnedVehicles = new List<Vehicle>();
 
                 string id = User.Identity.GetUserId();
 
-                OwnedVehicles = context.Vehicles.Where(v => v.Id == id).ToList();
+                OwnedVehicles = context.Vehicles.Where(v => v.Id == id).Include(v => v.Customer).ToList();
 
                 Session["Date"] = date;
 
@@ -77,17 +76,17 @@ namespace DonaldsonMotors.Controllers
 
             Customer customer = (Customer)context.Users.Find(id);
 
-            Booking bookingCon = new Booking
-            {
-                ServiceType = model.ServiceType,
-                ServiceNote = model.ServiceNote,
-                Vehicle = veh,
-                Registration = reg,
-                BookingDate = (DateTime)Session["Date"],
-                CustId = id,
-                Customer = customer,
-                PartsUsed = new List<PartUsed>()
-            };
+            Booking bookingCon = model;
+
+            bookingCon.ServiceType = model.ServiceType;
+            bookingCon.ServiceNote = model.ServiceNote;
+            bookingCon.Vehicle = veh;
+            bookingCon.Registration = reg;
+            bookingCon.BookingDate = (DateTime)Session["Date"];
+            bookingCon.CustId = id;
+            bookingCon.Customer = customer;
+            bookingCon.PartsUsed = new List<PartUsed>();
+            
 
             if(model.ServiceType == ServiceType.MOT)
             {
@@ -113,14 +112,11 @@ namespace DonaldsonMotors.Controllers
                 bookingCon.Deposit = 30;
             }
 
-
-            Session["Booking"] = bookingCon;
-
-            return RedirectToAction("BookingConfirm");
+            return RedirectToAction("BookingConfirm", bookingCon);
         }
 
         [HttpGet]
-        public ActionResult BookingConfirm()
+        public ActionResult BookingConfirm(Booking booking)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -128,17 +124,15 @@ namespace DonaldsonMotors.Controllers
             }
             else
             {
-                Booking booking = (Booking)Session["Booking"];
-
                 return View(booking);
             }
         }
 
         [HttpPost]
-        public ActionResult BookingConfirm(Booking model)
+        public ActionResult BookingConfirm(Booking model, int? id)
         {
        
-            Booking booking = (Booking)Session["Booking"];
+            Booking booking = model;
 
             List<Booking> activeBookings = context.Bookings.Where(b => b.Complete == false).Include(b => b.Staff).ToList();
 
@@ -156,15 +150,31 @@ namespace DonaldsonMotors.Controllers
 
             booking.Staff = avalStaff.First();
             booking.StaffId = avalStaff.First().Id;
+
             //booking.Staff = (Staff)context.Users.Find(booking.StaffId);
 
             //Staff staff = booking.Staff;
-            //Customer customer = context.Users.OfType<Customer>().Where(c => c.Id == booking.CustId).Include(c => c.Bookings).First();
-            //Vehicle vehicle = context.Vehicles.Where(v => v.Registration == booking.Registration).Include(v => v.ServiceHistory).First();
+            Customer customer = context.Users.OfType<Customer>().Where(c => c.Id == booking.CustId).Include(c => c.Bookings).First();
+            Vehicle vehicle = context.Vehicles.Where(v => v.Registration == booking.Registration).Include(v => v.ServiceHistory).First();
 
             //staff.Jobs.Add(booking);
             //customer.Bookings.Add(booking);
             //vehicle.ServiceHistory.Add(booking);
+
+            booking.Customer = customer;
+            booking.Vehicle = vehicle;
+            booking.CancelationReason = "";
+
+            List<Booking> allBookings = context.Bookings.ToList();
+
+            if (allBookings.Count > 0)
+            {
+                booking.BookingId = allBookings.Count + 1;
+            }
+            else
+            {
+                booking.BookingId = 1;
+            }
 
             context.Bookings.Add(booking);
 
@@ -193,11 +203,11 @@ namespace DonaldsonMotors.Controllers
             var currentDate = DateTime.Now;
             var loopDate = currentDate;
 
-            while(loopDate < currentDate.AddDays(21))
+            while (loopDate < currentDate.AddDays(21))
             {
                 int counter = 0;
 
-                foreach(Booking b in bookings)
+                foreach (Booking b in bookings)
                 {
                     if (b.BookingDate.Date == loopDate.Date)
                     {
@@ -217,147 +227,152 @@ namespace DonaldsonMotors.Controllers
 
                 if (counter < 4)
                 {
+                    List<Slot> freeSlots = new List<Slot>();
+
                     foreach (Slot s in slots)
                     {
-                        if (s.date == loopDate.Date)
+                        if (s.date.Date == loopDate.Date)
                         {
-                            if (s.date.Hour == 9)
+                            if (s.start == 9)
                             {
                                 Slot ev = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 11,
                                     end = 12,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev);
+                                freeSlots.Add(ev);
 
                                 Slot ev1 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 13,
                                     end = 14,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev1);
+                                freeSlots.Add(ev1);
 
                                 Slot ev2 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 15,
                                     end = 16,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev2);
+                                freeSlots.Add(ev2);
                             }
-                            if (s.date.Hour == 11)
+                            else if (s.start == 11)
                             {
                                 Slot ev3 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 9,
                                     end = 10,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev3);
+                                freeSlots.Add(ev3);
 
                                 Slot ev4 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 13,
                                     end = 14,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev4);
+                                freeSlots.Add(ev4);
 
                                 Slot ev5 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 15,
                                     end = 16,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev5);
+                                freeSlots.Add(ev5);
                             }
-                            if (s.date.Hour == 13)
+                            else if (s.start == 13)
                             {
                                 Slot ev6 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 9,
                                     end = 10,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev6);
+                                freeSlots.Add(ev6);
 
                                 Slot ev7 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 11,
                                     end = 12,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev7);
+                                freeSlots.Add(ev7);
 
                                 Slot ev8 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 15,
                                     end = 16,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev8);
+                                freeSlots.Add(ev8);
                             }
-                            if (s.date.Hour == 15)
+                            else if (s.start == 15)
                             {
                                 Slot ev9 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 9,
                                     end = 10,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev9);
+                                freeSlots.Add(ev9);
 
                                 Slot ev10 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 11,
                                     end = 12,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev10);
+                                freeSlots.Add(ev10);
 
                                 Slot ev11 = new Slot()
                                 {
-                                    date = s.date,
+                                    date = s.date.Date,
                                     start = 13,
                                     end = 14,
                                     desc = "Book Now"
                                 };
 
-                                slots.Add(ev11);
+                                freeSlots.Add(ev11);
                             }
                         }
                     }
+
+                    slots = slots.Union(freeSlots).ToList();
+
                 }
 
                 if (counter == 0)
                 {
                     Slot ev12 = new Slot()
                     {
-                        date = loopDate,
+                        date = loopDate.Date,
                         start = 9,
                         end = 10,
                         desc = "Book Now"
@@ -367,7 +382,7 @@ namespace DonaldsonMotors.Controllers
 
                     Slot ev13 = new Slot()
                     {
-                        date = loopDate,
+                        date = loopDate.Date,
                         start = 11,
                         end = 12,
                         desc = "Book Now"
@@ -377,7 +392,7 @@ namespace DonaldsonMotors.Controllers
 
                     Slot ev14 = new Slot()
                     {
-                        date = loopDate,
+                        date = loopDate.Date,
                         start = 13,
                         end = 14,
                         desc = "Book Now"
@@ -387,7 +402,7 @@ namespace DonaldsonMotors.Controllers
 
                     Slot ev15 = new Slot()
                     {
-                        date = loopDate,
+                        date = loopDate.Date,
                         start = 15,
                         end = 16,
                         desc = "Book Now"

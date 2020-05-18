@@ -55,6 +55,13 @@
         </div>
     </div>
 
+    @Html.HiddenFor(model => model.CustId)
+    @Html.HiddenFor(model => model.Customer)
+    @Html.HiddenFor(model => model.PartsUsed)
+    @Html.HiddenFor(model => model.BookingId)
+    @Html.HiddenFor(model => model.CancelationReason)
+    @*@Html.HiddenFor(model => model.BookingId)*@
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />

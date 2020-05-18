@@ -71,7 +71,7 @@ namespace DonaldsonMotors.Models
 
                     //staff props
                     HighestQualification = "",
-                    EmergencyContactName =  "Batman",
+                    EmergencyContactName = "Batman",
                     EmergencyContactNumber = "08001111",
                     NationalInsuranceNumber = "NI 21 33 A",
                     ContractType = ContractType.FullTime,
@@ -317,7 +317,7 @@ namespace DonaldsonMotors.Models
                     CustomerType = CustomerType.General,
                     Bookings = new List<Booking>(),
                     Vehicles = new List<Vehicle>()
-                    
+
                 };
 
                 //add the hashed password to the user
@@ -436,9 +436,69 @@ namespace DonaldsonMotors.Models
                 context.Vehicles.Add(Vehicle4);
 
                 context.SaveChanges();
+
+                //add a few fake bookings
+
+                DateTime date = DateTime.Now;
+                TimeSpan ts = new TimeSpan(9, 0, 0);
+                date = date.Date + ts;
+
+                var booking1 = new Booking
+                {
+                    BookingDate = date.AddDays(1).AddHours(2),
+                    Cancelled = false,
+                    CancelationReason = "",
+                    CheckIn = false,
+                    Complete = false,
+                    Deposit = 5,
+                    EstimatedCost = 20,
+                    ServiceNote = "MOT",
+                    ServiceType = ServiceType.MOT,
+                    TotalCost = 0,
+                    PartsUsed = new List<PartUsed>()
+                };
+
+                booking1.CustId = cust1.Id;
+                booking1.Registration = Vehicle1.Registration;
+
+                booking1.StaffId = Mech1.Id;
+
+                booking1.BookingId = 1;
+
+                context.Bookings.Add(booking1);
+
+                context.SaveChanges();
+
+                var booking2 = new Booking
+                {
+                    BookingDate = date.AddDays(2).AddHours(6),
+                    Cancelled = false,
+                    CancelationReason = "",
+                    CheckIn = false,
+                    Complete = false,
+                    Deposit = 20,
+                    EstimatedCost = 200,
+                    ServiceNote = "Broken Window",
+                    ServiceType = ServiceType.Repair,
+                    TotalCost = 0,
+                    PartsUsed = new List<PartUsed>()
+                };
+
+                booking2.CustId = cust2.Id;
+                booking2.Registration = Vehicle3.Registration;
+
+                booking2.StaffId = Mech1.Id;
+
+                booking2.BookingId = 2;
+
+                context.Bookings.Add(booking2);
+
+                context.SaveChanges();
+
             }
-
-
         }
+
+
     }
 }
+
