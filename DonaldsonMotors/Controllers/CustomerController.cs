@@ -9,6 +9,10 @@ using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using Rotativa;
 
+//Name: Neil Hunter
+//Project: DonaldsonMototrs
+//Date : 18/05/20
+
 namespace DonaldsonMotors.Controllers
 {
     public class CustomerController : Controller
@@ -16,11 +20,11 @@ namespace DonaldsonMotors.Controllers
         ApplicationDbContext context = new ApplicationDbContext();
 
         // GET: Customer
-        public ActionResult Index()
-        {
-            return View();
-        }
 
+            /// <summary>
+            /// view for customer account page
+            /// </summary>
+            /// <returns>view</returns>
         public ActionResult MyAccount()
         {
             if (User.Identity.IsAuthenticated)

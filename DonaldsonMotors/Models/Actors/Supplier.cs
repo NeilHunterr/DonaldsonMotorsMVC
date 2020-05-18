@@ -5,8 +5,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
+//Name: Neil Hunter
+//Project: DonaldsonMototrs
+//Date : 18/05/20
+
 namespace DonaldsonMotors.Models.Actors
 {
+    /// <summary>
+    /// class for suppliers information / out with scope
+    /// </summary>
     public class Supplier
     {
         [Required]

@@ -8,6 +8,9 @@ using System.Web;
 
 namespace DonaldsonMotors.Models.SystemParts
 {
+    /// <summary>
+    /// A class for part orders /out with scope
+    /// </summary>
     public class Order
     {
         [Key]

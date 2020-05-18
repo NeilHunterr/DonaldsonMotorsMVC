@@ -6,8 +6,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
+//Name: Neil Hunter
+//Project: DonaldsonMototrs
+//Date : 18/05/20
+
 namespace DonaldsonMotors.Models.Actors
 {
+    /// <summary>
+    /// a class for customers vehicles information
+    /// </summary>
     public class Vehicle
     {
         [Key]

@@ -8,6 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
+using DonaldsonMotors.Extensions;
+
+
+//Name: Neil Hunter
+//Project: DonaldsonMototrs
+//Date : 18/05/20
 
 namespace DonaldsonMotors.Controllers
 {
@@ -16,11 +22,11 @@ namespace DonaldsonMotors.Controllers
         ApplicationDbContext context = new ApplicationDbContext();
 
         // GET: Booking
-        public ActionResult Index()
-        {
-            return View();
-        }
         
+        /// <summary>
+        /// a view to see a available timeslots
+        /// </summary>
+        /// <returns>a view populated with available times</returns>
         public ActionResult CheckAvalability()
         {
              var slots = GetSlotsList().ToList();
@@ -29,6 +35,11 @@ namespace DonaldsonMotors.Controllers
             
         }
 
+        /// <summary>
+        /// a view to select a car
+        /// </summary>
+        /// <param name="date">the choosen timeslot date</param>
+        /// <returns>a view populated with the customers vehicles</returns>
         public ActionResult SelectVehicle(DateTime date)
         {
             if (!User.Identity.IsAuthenticated)
@@ -50,6 +61,11 @@ namespace DonaldsonMotors.Controllers
             }
         }
 
+        /// <summary>
+        /// a view to select a service required
+        /// </summary>
+        /// <param name="id">the choosen vehicles id</param>
+        /// <returns>a view to be populated</returns>
         [HttpGet]
         public ActionResult BookNow(string id)
         {
@@ -66,55 +82,71 @@ namespace DonaldsonMotors.Controllers
             }
         }
 
+        /// <summary>
+        /// an action to create the booking
+        /// </summary>
+        /// <param name="model">the booking</param>
+        /// <returns>redirect to confrimation</returns>
         [HttpPost]
         public ActionResult BookNow(Booking model)
         {
-
-            string id = User.Identity.GetUserId();
-            Vehicle veh = (Vehicle)Session["Vehicle"];
-            string reg = veh.Registration;
-
-            Customer customer = (Customer)context.Users.Find(id);
-
-            Booking bookingCon = model;
-
-            bookingCon.ServiceType = model.ServiceType;
-            bookingCon.ServiceNote = model.ServiceNote;
-            bookingCon.Vehicle = veh;
-            bookingCon.Registration = reg;
-            bookingCon.BookingDate = (DateTime)Session["Date"];
-            bookingCon.CustId = id;
-            bookingCon.Customer = customer;
-            bookingCon.PartsUsed = new List<PartUsed>();
-            
-
-            if(model.ServiceType == ServiceType.MOT)
+            if (!User.Identity.IsAuthenticated)
             {
-                bookingCon.EstimatedCost = 20;
-                bookingCon.Deposit = 5;
+                return RedirectToAction("Login", "Account", null);
             }
-
-            if (model.ServiceType == ServiceType.OilChange)
+            else
             {
-                bookingCon.EstimatedCost = 20;
-                bookingCon.Deposit = 5;
-            }
+                string id = User.Identity.GetUserId();
+                Vehicle veh = (Vehicle)Session["Vehicle"];
+                string reg = veh.Registration;
 
-            if (model.ServiceType == ServiceType.TyreChange)
-            {
-                bookingCon.EstimatedCost = 120;
-                bookingCon.Deposit = 20;
-            }
+                Customer customer = (Customer)context.Users.Find(id);
 
-            if (model.ServiceType == ServiceType.Repair)
-            {
-                bookingCon.EstimatedCost = 200;
-                bookingCon.Deposit = 30;
-            }
+                Booking bookingCon = model;
 
-            return RedirectToAction("BookingConfirm", bookingCon);
+                bookingCon.ServiceType = model.ServiceType;
+                bookingCon.ServiceNote = model.ServiceNote;
+                bookingCon.Vehicle = veh;
+                bookingCon.Registration = reg;
+                bookingCon.BookingDate = (DateTime)Session["Date"];
+                bookingCon.CustId = id;
+                bookingCon.Customer = customer;
+                bookingCon.PartsUsed = new List<PartUsed>();
+
+
+                if (model.ServiceType == ServiceType.MOT)
+                {
+                    bookingCon.EstimatedCost = 20;
+                    bookingCon.Deposit = 5;
+                }
+
+                if (model.ServiceType == ServiceType.OilChange)
+                {
+                    bookingCon.EstimatedCost = 20;
+                    bookingCon.Deposit = 5;
+                }
+
+                if (model.ServiceType == ServiceType.TyreChange)
+                {
+                    bookingCon.EstimatedCost = 120;
+                    bookingCon.Deposit = 20;
+                }
+
+                if (model.ServiceType == ServiceType.Repair)
+                {
+                    bookingCon.EstimatedCost = 200;
+                    bookingCon.Deposit = 30;
+                }
+
+                return RedirectToAction("BookingConfirm", bookingCon);
+            }
         }
 
+        /// <summary>
+        /// a view to see the booking before confirming
+        /// </summary>
+        /// <param name="booking"> the complete booking</param>
+        /// <returns>the view</returns>
         [HttpGet]
         public ActionResult BookingConfirm(Booking booking)
         {
@@ -128,70 +160,80 @@ namespace DonaldsonMotors.Controllers
             }
         }
 
+        /// <summary>
+        /// an action to add the booking to db
+        /// </summary>
+        /// <param name="model">the booking</param>
+        /// <param name="id">n/a</param>
+        /// <returns>redirects to home</returns>
         [HttpPost]
         public ActionResult BookingConfirm(Booking model, int? id)
         {
-       
-            Booking booking = model;
-
-            List<Booking> activeBookings = context.Bookings.Where(b => b.Complete == false).Include(b => b.Staff).ToList();
-
-            List<Staff> unavalStaff = new List<Staff>();
-
-            foreach(Booking b in activeBookings)
+            if (!User.Identity.IsAuthenticated)
             {
-                if(b.BookingDate == booking.BookingDate)
-                {
-                    unavalStaff.Add(b.Staff);
-                }          
-            }
-
-            List<Staff> avalStaff = context.Users.OfType<Staff>().Except(unavalStaff).Include(s => s.Jobs).ToList();
-
-            booking.Staff = avalStaff.First();
-            booking.StaffId = avalStaff.First().Id;
-
-            //booking.Staff = (Staff)context.Users.Find(booking.StaffId);
-
-            //Staff staff = booking.Staff;
-            Customer customer = context.Users.OfType<Customer>().Where(c => c.Id == booking.CustId).Include(c => c.Bookings).First();
-            Vehicle vehicle = context.Vehicles.Where(v => v.Registration == booking.Registration).Include(v => v.ServiceHistory).First();
-
-            //staff.Jobs.Add(booking);
-            //customer.Bookings.Add(booking);
-            //vehicle.ServiceHistory.Add(booking);
-
-            booking.Customer = customer;
-            booking.Vehicle = vehicle;
-            booking.CancelationReason = "";
-
-            List<Booking> allBookings = context.Bookings.ToList();
-
-            if (allBookings.Count > 0)
-            {
-                booking.BookingId = allBookings.Count + 1;
+                return RedirectToAction("Login", "Account", null);
             }
             else
             {
-                booking.BookingId = 1;
+                Booking booking = model;
+
+                List<Booking> activeBookings = context.Bookings.Where(b => b.Complete == false).Include(b => b.Staff).ToList();
+
+                List<Staff> unavalStaff = new List<Staff>();
+
+                foreach (Booking b in activeBookings)
+                {
+                    if (b.BookingDate == booking.BookingDate)
+                    {
+                        unavalStaff.Add(b.Staff);
+                    }
+                }
+
+                List<Staff> avalStaff = context.Users.OfType<Staff>().Except(unavalStaff).Include(s => s.Jobs).ToList();
+
+                booking.Staff = avalStaff.First();
+                booking.StaffId = avalStaff.First().Id;
+
+                //booking.Staff = (Staff)context.Users.Find(booking.StaffId);
+
+                //Staff staff = booking.Staff;
+                Customer customer = context.Users.OfType<Customer>().Where(c => c.Id == booking.CustId).Include(c => c.Bookings).First();
+                Vehicle vehicle = context.Vehicles.Where(v => v.Registration == booking.Registration).Include(v => v.ServiceHistory).First();
+
+                //staff.Jobs.Add(booking);
+                //customer.Bookings.Add(booking);
+                //vehicle.ServiceHistory.Add(booking);
+
+                booking.Customer = customer;
+                booking.Vehicle = vehicle;
+                booking.CancelationReason = "";
+
+
+                List<Booking> allBookings = context.Bookings.ToList();
+
+                if (allBookings.Count > 0)
+                {
+                    booking.BookingId = allBookings.Count + 1;
+                }
+                else
+                {
+                    booking.BookingId = 1;
+                }
+
+                context.Bookings.Add(booking);
+
+                context.SaveChanges();
+
+                this.AddNotification("Booking Made for " + booking.BookingDate.ToString(), NotificationType.SUCCESS);
+
+                return RedirectToAction("Index", "Home");
             }
-
-            context.Bookings.Add(booking);
-
-            context.SaveChanges();
-
-            return RedirectToAction("Index", "Home", null);
         }
 
-
-
-
-
-
-
-
-
-
+        /// <summary>
+        /// a method to get a list of avaiable times
+        /// </summary>
+        /// <returns>list of available times</returns>
         public List<Slot> GetSlotsList()
         {
             ApplicationDbContext context = new ApplicationDbContext();

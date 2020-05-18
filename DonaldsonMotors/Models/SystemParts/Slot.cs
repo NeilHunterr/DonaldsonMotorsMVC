@@ -4,8 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
+//Name: Neil Hunter
+//Project: DonaldsonMototrs
+//Date : 18/05/20
+
 namespace DonaldsonMotors.Models.SystemParts
 {
+    /// <summary>
+    /// a class used to generate timeslots
+    /// </summary>
     public class Slot
     {
         [DisplayFormat(DataFormatString = "{0:d}")]

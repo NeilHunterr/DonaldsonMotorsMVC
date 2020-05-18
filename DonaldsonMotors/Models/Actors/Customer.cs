@@ -10,8 +10,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using DonaldsonMotors.Models.SystemParts;
 
+//Name: Neil Hunter
+//Project: DonaldsonMototrs
+//Date : 18/05/20
+
 namespace DonaldsonMotors.Models.Actors
 {
+    /// <summary>
+    /// A Class of customer information - inheriting for applicationUser
+    /// </summary>
     public class Customer : User
     {
         [Display(Name = "Customer Type")]
@@ -22,6 +29,9 @@ namespace DonaldsonMotors.Models.Actors
         public List<Booking> Bookings { get; set; }
     }
 
+    /// <summary>
+    /// enum of types of customers
+    /// </summary>
     public enum CustomerType
     {
         General,

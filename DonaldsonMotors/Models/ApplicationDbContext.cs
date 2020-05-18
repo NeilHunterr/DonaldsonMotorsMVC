@@ -7,6 +7,10 @@ using DonaldsonMotors.Models.Actors;
 using System.Data.Entity;
 using DonaldsonMotors.Models.SystemParts;
 
+//Name: Neil Hunter
+//Project: DonaldsonMototrs
+//Date : 18/05/20
+
 namespace DonaldsonMotors.Models
 {
     public class ApplicationDbContext : IdentityDbContext<User>

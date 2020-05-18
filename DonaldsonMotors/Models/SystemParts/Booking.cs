@@ -6,8 +6,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
+//Name: Neil Hunter
+//Project: DonaldsonMototrs
+//Date : 18/05/20
+
 namespace DonaldsonMotors.Models.SystemParts
 {
+    /// <summary>
+    /// A class for bookings
+    /// </summary>
     public class Booking
     {
         [Key]
@@ -46,6 +53,7 @@ namespace DonaldsonMotors.Models.SystemParts
         [ForeignKey("Vehicle")]
         public string Registration { get; set; }
         public Vehicle Vehicle { get; set; }
+
 
     }
 

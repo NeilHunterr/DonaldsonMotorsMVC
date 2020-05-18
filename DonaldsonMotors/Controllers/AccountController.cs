@@ -11,6 +11,12 @@ using Microsoft.Owin.Security;
 using DonaldsonMotors.Models;
 using DonaldsonMotors.ViewModels;
 using DonaldsonMotors.Models.Actors;
+using System.Collections.Generic;
+using DonaldsonMotors.Models.SystemParts;
+using System.Net;
+using System.Net.Mail;
+using System.Web.Helpers;
+using DonaldsonMotors.Extensions;
 
 namespace DonaldsonMotors.Controllers
 {
@@ -153,8 +159,8 @@ namespace DonaldsonMotors.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Customer 
-                { UserName = model.Email, 
+                var user = new Customer
+                { UserName = model.Email,
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
@@ -162,18 +168,61 @@ namespace DonaldsonMotors.Controllers
                     Street = model.Street,
                     City = model.City,
                     PostCode = model.Postcode,
-                    CustomerType = CustomerType.General
+                    CustomerType = CustomerType.General,
+                    Vehicles = new List<Vehicle>(),
+                    Bookings = new List<Booking>()
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+
+
+                    //    var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
+                    //    var message = new MailMessage();
+                    //    message.To.Add(new MailAddress(model.Email));  // replace with valid value 
+                    //    message.From = new MailAddress("neilhunter40@gmail.com");  // replace with valid value
+                    //    message.Subject = "Donaldson Motors Registration";
+                    //    message.Body = string.Format(body, emailForm.FromName, emailForm.FromEmail, emailForm.Message);
+                    //    message.IsBodyHtml = true;
+
+                    //using (var smtp = new SmtpClient())
+                    //{
+                    //    var credential = new NetworkCredential
+                    //    {
+                    //        UserName = model.Email,  // replace with valid value
+                    //        Password = model.Password // replace with valid value
+                    //    };
+
+                    //    smtp.Credentials = credential;
+                    //    smtp.Host = "smtp.gmail.com";
+                    //    smtp.Port = 587;
+                    //    smtp.EnableSsl = true;
+                    //    await smtp.SendMailAsync(message);
+
+                    //}
+
+                    //string recipient = model.Email;
+                    //string subject = "Registration Confirmation";
+                    //string body = "Successfully Registered";
+
+                    //WebMail.SmtpServer = "smtp-gmail.com";
+                    //WebMail.SmtpPort = 587;
+                    //WebMail.SmtpUseDefaultCredentials = true;
+                    //WebMail.EnableSsl = true;
+                    //WebMail.UserName = "DonaldsonMotors@gmail.com";
+                    //WebMail.Password = "password";
+
+                    //WebMail.Send(to: recipient, subject: subject, body: body, isBodyHtml: true);
+
+                    this.AddNotification("Successfully Registered", NotificationType.SUCCESS);
 
                     return RedirectToAction("Index", "Home");
                 }

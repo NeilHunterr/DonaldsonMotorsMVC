@@ -8,6 +8,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
+//Name: Neil Hunter
+//Project: DonaldsonMototrs
+//Date : 18/05/20
+
 namespace DonaldsonMotors.Models
 {
     public class DatabaseInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
