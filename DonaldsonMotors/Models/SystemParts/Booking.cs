@@ -12,15 +12,22 @@ namespace DonaldsonMotors.Models.SystemParts
     {
         [Key]
         public int BookingId { get; set; }
+        [Display(Name = "Date")]
         public DateTime BookingDate { get; set; }
+        [Display(Name = "Checked In")]
         public bool CheckIn { get; set; }
         public bool Cancelled { get; set; }
+        [Display(Name = "Cancelation Reason")]
         public string CancelationReason { get; set; }
+        [Display(Name = "Estimated Cost")]
         public double EstimatedCost { get; set; }
         public double Deposit { get; set; }
         public bool Complete { get; set; }
+        [Display(Name = "Total Cost")]
         public double TotalCost { get; set; }
+        [Display(Name = "Service Type")]
         public ServiceType ServiceType { get; set; }
+        [Display(Name = "Service Note")]
         public string ServiceNote { get; set; }
 
 

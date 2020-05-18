@@ -39,10 +39,10 @@
             @Html.DisplayNameFor(model => model.ServiceNote)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Customer.Email)
+            @Html.Display("Customer Email")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Staff.FirstName)
+            @Html.Display("Assigned Staff")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Registration)
@@ -89,7 +89,7 @@
             @Html.DisplayFor(modelItem => item.Registration)
         </td>
         <td>
-            @Html.ActionLink("Get PDF", "GetPDF", new { id=item.BookingId })
+            @Html.ActionLink("Get PDF", "GetPastPDF", new { id=item.BookingId })
         </td>
     </tr>
 }

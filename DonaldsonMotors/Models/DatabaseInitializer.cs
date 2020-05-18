@@ -156,7 +156,7 @@ namespace DonaldsonMotors.Models
                     //generic user props
                     UserName = "mech1@donaldsonmotors.com",
                     Email = "mech1@donaldsonmotors.com",
-                    FirstName = "Fred",
+                    FirstName = "Sam",
                     LastName = "West",
                     DateOfBirth = new DateTime(1994, 06, 28),
                     Street = "99 Love Street",

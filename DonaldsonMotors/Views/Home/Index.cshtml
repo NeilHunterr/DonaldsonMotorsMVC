@@ -94,7 +94,7 @@
                     {
                         <li>@Html.ActionLink("My Account", "MyAccount", "Customer")</li>
                     }
-                    @if(User.IsInRole("Admin"))
+                    @if(User.IsInRole("General Manager"))
                     {
                         <li>@Html.ActionLink("Admin", "AdminPage", "Admin")</li>
                     }
