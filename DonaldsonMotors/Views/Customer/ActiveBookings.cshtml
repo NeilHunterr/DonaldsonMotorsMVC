@@ -6,6 +6,11 @@
 
 <h2>ActiveBookings</h2>
 
+<p>
+    @Html.ActionLink("Get PDF", "GetPDF")
+</p>
+
+
 <table class="table">
     <tr>
         <th>
@@ -76,7 +81,6 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.BookingId }) |
-                @Html.ActionLink("Get PDF", "GetPDF", new { id = item.BookingId })
                 @Html.ActionLink("Cancel", "Cancel", new { id = item.BookingId })
             </td>
         </tr>

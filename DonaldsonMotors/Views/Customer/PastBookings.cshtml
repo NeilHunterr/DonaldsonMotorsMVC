@@ -6,6 +6,11 @@
 
 <h2>PastBookings</h2>
 
+<p>
+    @Html.ActionLink("Get PDF", "GetPastPDF")
+</p>
+
+
 <table class="table">
     <tr>
         <th>
@@ -41,42 +46,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CheckIn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cancelled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CancelationReason)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EstimatedCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deposit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Complete)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServiceNote)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Registration)
-        </td>
-        <td>
-            @Html.ActionLink("Get PDF", "GetPDF", new { id=item.BookingId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cancelled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CancelationReason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstimatedCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deposit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registration)
+            </td>
+        </tr>
+    }
 
 </table>

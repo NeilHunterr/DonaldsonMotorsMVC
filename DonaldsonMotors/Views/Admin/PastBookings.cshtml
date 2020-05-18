@@ -7,8 +7,9 @@
 <h2>PastBookings</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Get PDF", "GetPastPDF")
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -87,9 +88,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Registration)
-        </td>
-        <td>
-            @Html.ActionLink("Get PDF", "GetPastPDF", new { id=item.BookingId })
         </td>
     </tr>
 }

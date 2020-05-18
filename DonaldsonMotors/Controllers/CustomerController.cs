@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
+using Rotativa;
 
 namespace DonaldsonMotors.Controllers
 {
@@ -84,9 +85,38 @@ namespace DonaldsonMotors.Controllers
             }
         }
 
-        public ActionResult GetPDF ()
+        public ActionResult GetActivePDF()
         {
-            return View();
+            Dictionary<string, string> cookieCollection = new Dictionary<string, string>();
+
+            foreach (var key in Request.Cookies.AllKeys)
+            {
+                cookieCollection.Add(key, Request.Cookies.Get(key).Value);
+            }
+
+            return new ActionAsPdf("ActiveBookings")
+            {
+                FileName = "ActiveBookings.pdf",
+                Cookies = cookieCollection
+
+            };
+        }
+
+        public ActionResult GetPastPDF()
+        {
+            Dictionary<string, string> cookieCollection = new Dictionary<string, string>();
+
+            foreach (var key in Request.Cookies.AllKeys)
+            {
+                cookieCollection.Add(key, Request.Cookies.Get(key).Value);
+            }
+
+            return new ActionAsPdf("PastBookings")
+            {
+                FileName = "PastBookings.pdf",
+                Cookies = cookieCollection
+
+            };
         }
     }
 }
